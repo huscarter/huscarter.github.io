@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>移动开发设计规范 | Here to stay</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">移动开发设计规范</h1><a id="logo" href="/.">Here to stay</a><p class="description">huscarter</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">移动开发设计规范</h1><div class="post-meta">2020-05-08<span> | </span><span class="category"><a href="/categories/app/">app</a></span></div><div class="post-content"><h3 id="系统颜色"><a href="#系统颜色" class="headerlink" title="系统颜色"></a>系统颜色</h3><h4 id="主题颜色"><a href="#主题颜色" class="headerlink" title="主题颜色"></a>主题颜色</h4><ol>
+<li><p>主题主色调</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app_color = FF0074FF</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>背景颜色</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bg_color = FFF7F8FC</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>阴影颜色</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eve_color = 05000000</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>蒙层颜色，用于展示该item已选中不可点击,[B3：70]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mask_color = B3FFFFFF</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>弹框透明底色</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dialog_bg_color = CC000000</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="字体颜色"><a href="#字体颜色" class="headerlink" title="字体颜色"></a>字体颜色</h4><ol>
+<li><p>标题、或者是文本主题颜色，用于一级文字。如导航栏标题，产品信息，个人中心，弹窗状等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text_main = FF333333</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>二级标题颜色，用于二级文字信息。如导航栏二级标题，产品辅助信息，分享，弹窗副文本内容等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text_sub = FF838383</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文本内容颜色，用于大面积描述性文本。如标题下面的正文。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text_content = FF666666</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>说明类型文字颜色，用于说明、解释性文字信息。如产品交易记录时间显示，产品下介绍内容等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text_decs = FF999999</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输入框说明类型文字颜色，用于登录/注册输入框提示信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text_hint = FFBBBEC7</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不可用的字体颜色</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text_disable = FFCCCCCC</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>项目警示性信息颜色</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text_notice = FFFF4040</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="按钮颜色"><a href="#按钮颜色" class="headerlink" title="按钮颜色"></a>按钮颜色</h4><ol>
+<li><p>正常按钮颜色</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">btn_color = FF0075FF</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按钮按下的颜色（一般系统有水波纹效果）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">btn_color_press = FF0040FF</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不可点击按钮的颜色</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">btn_color_disable = FF237CE5</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="分割线颜色"><a href="#分割线颜色" class="headerlink" title="分割线颜色"></a>分割线颜色</h4><ol>
+<li>正常分割线颜色<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">divide_color = FFEDEDED</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="主题的红、黄、蓝、绿、橘"><a href="#主题的红、黄、蓝、绿、橘" class="headerlink" title="主题的红、黄、蓝、绿、橘"></a>主题的红、黄、蓝、绿、橘</h4><ol>
+<li><p>红</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">red = FFFF4040</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>黄</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yellow = FFFEBE06</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>蓝</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blue = FF0075FF</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>绿</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">green = FF19BE6B</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>橘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">orange = FFFFB55A</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ol>
+<li>提示信息背景色，比如用于断网提示背景<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tps_bg_color = FFFFF6E6</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="系统尺寸"><a href="#系统尺寸" class="headerlink" title="系统尺寸"></a>系统尺寸</h3><h4 id="主题尺寸"><a href="#主题尺寸" class="headerlink" title="主题尺寸"></a>主题尺寸</h4><ol>
+<li><p>标题栏高度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title_bar_height = 56</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>状态栏高度（系统不可更改）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">status_bar_height =25</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>标题栏菜单宽度和高度（一般推荐采用标题栏高的正方形）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bar_menu_width = 56</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>边距（内容到屏幕的距离）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">margin = 12</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>卡片、条目之间的上下间距</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">margin_item = 10</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="组件尺寸"><a href="#组件尺寸" class="headerlink" title="组件尺寸"></a>组件尺寸</h4><ol>
+<li><p>按钮的高度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 主要按钮的高度</span><br><span class="line">btn_height = 48</span><br><span class="line">// 在条目里按钮的高度</span><br><span class="line">item_btn_height = 30</span><br><span class="line">// 在条目里按钮的宽度,这里一般做最小宽度限制</span><br><span class="line">item_btn_width = 60</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输入框的高度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">edit_height = 40</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>条目的高度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">item_height = 48</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>搜索框高度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">search_height = 64</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分割线的高度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">divide_height = 0.5</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="文字尺寸"><a href="#文字尺寸" class="headerlink" title="文字尺寸"></a>文字尺寸</h4><ol>
+<li><p>超大文本文字尺寸</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font_size_max = 27</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>大文本文字尺寸</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font_size_big = 23</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>标题文字尺寸</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font_size_title = 17</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>普通按钮字体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font_size_btn = 16</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>二级标题文字尺寸</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font_size_sub = 15</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文本文字尺寸</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font_size = 14</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>说明文字尺寸</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font_size_desc = 13</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输入框提示文字尺寸</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font_size_hit = 12</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>小文本文字尺寸，比如红点消息个数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font_size_min = 11</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="圆角尺寸"><a href="#圆角尺寸" class="headerlink" title="圆角尺寸"></a>圆角尺寸</h4><ol>
+<li><p>卡片圆角</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">radius = 5</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按钮圆角</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 普通按钮圆角</span><br><span class="line">radius_btn = 6</span><br><span class="line">// 小按钮圆角</span><br><span class="line">radius_btn_min = 3</span><br><span class="line">// 椭圆按钮圆角</span><br><span class="line">radius_oval_btn = 20</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>弹框圆角</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 普通弹框圆角</span><br><span class="line">radius_dialog = 15</span><br><span class="line">// 底部弹框圆角</span><br><span class="line">radius_dialog_sheet = 15</span><br><span class="line">// 活动弹框圆角（也可以视为普通弹框）</span><br><span class="line">radius_dialog_activity = 15</span><br><span class="line">// 搜索圆角</span><br><span class="line">radius_search = 25</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</div><div class="tags"><a href="/tags/规范/"><i class="fa fa-tag"></i>规范</a></div><div class="post-nav"><a class="pre" href="/android/android系统设置页面跳转整理/">android系统设置页面跳转整理</a><a class="next" href="/flutter/flutter接入友盟社会化分享/">flutter接入友盟社会化分享</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://huscarter.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/app/">app</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/flutter/">flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/im/">im</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/j2ee/">j2ee</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jenkins/">jenkins</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/人格心理学/">人格心理学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/商学院/">商学院</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术周边/">技术周边</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/投资理财/">投资理财</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/行动学习/">行动学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/诗歌/">诗歌</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/那些年/">那些年</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/技术周边/" style="font-size: 15px;">技术周边</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/物联网/" style="font-size: 15px;">物联网</a> <a href="/tags/binder/" style="font-size: 15px;">binder</a> <a href="/tags/flutter/" style="font-size: 15px;">flutter</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/jenkins/" style="font-size: 15px;">jenkins</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/im/" style="font-size: 15px;">im</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/kotlin/" style="font-size: 15px;">kotlin</a> <a href="/tags/nexus/" style="font-size: 15px;">nexus</a> <a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/weex/" style="font-size: 15px;">weex</a> <a href="/tags/刷机/" style="font-size: 15px;">刷机</a> <a href="/tags/五分钟商学院/" style="font-size: 15px;">五分钟商学院</a> <a href="/tags/j2ee/" style="font-size: 15px;">j2ee</a> <a href="/tags/论古说今/" style="font-size: 15px;">论古说今</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/读后感/" style="font-size: 15px;">读后感</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/规范/" style="font-size: 15px;">规范</a> <a href="/tags/行动学习/" style="font-size: 15px;">行动学习</a> <a href="/tags/诗歌/" style="font-size: 15px;">诗歌</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/web/vue使用梳理/">vue使用梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/web/es6常用方法/">es6常用方法</a></li><li class="post-list-item"><a class="post-list-link" href="/web/weex知识梳理/">weex知识梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/android/ARoute知识梳理/">ARoute知识梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/android/fresco知识梳理/">fresco知识梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/android/glide知识梳理/">glide知识梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/android/OkHttp知识梳理/">OkHttp知识梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/android/RecyclerView知识梳理/">RecyclerView知识梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/android/移动开发工具介绍/">移动开发工具介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/java/java位运算/">java位运算</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">Here to stay.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
