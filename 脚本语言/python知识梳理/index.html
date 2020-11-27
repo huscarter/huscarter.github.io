@@ -112,24 +112,15 @@
 </li>
 <li><font color="red">如果建立了包目录，需要在包下建立<strong>init</strong>.py文件（可空）用来指明此目录为包目录</font>
 
-<ul>
-<li><p>father.py 文件</p>
+<p>father.py 文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># coding=utf-8</span><br><span class="line"></span><br><span class="line"># Father 类</span><br><span class="line">class Father(object):</span><br><span class="line">  def __init__(self,name,age,sex):</span><br><span class="line">    self.name = name</span><br><span class="line">    self.age = age</span><br><span class="line">    self.sex = sex</span><br><span class="line"></span><br><span class="line">  def show(self):</span><br><span class="line">  	print &quot;name: %s,age:%s, sex:%d&quot; % (self.name,self.age,self.sex)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<p>son.py 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># coding=utf-8</span><br><span class="line">from father import Father</span><br><span class="line"></span><br><span class="line"># Son 类</span><br><span class="line">class User(Father):</span><br><span class="line">  def __init__(self,name,age,sex,score):</span><br><span class="line">    Father.__init__(self,name,age,sex)</span><br><span class="line">    self.score = score</span><br><span class="line"></span><br><span class="line">  def show(self):</span><br><span class="line">    super(self)</span><br><span class="line">    print &quot;score:&quot;,self.score</span><br></pre></td></tr></table></figure>
+<p>test.py文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/python</span><br><span class="line"># coding=utf-8</span><br><span class="line">from son import Son</span><br><span class="line"></span><br><span class="line">son = Son(&quot;whh&quot;,29,1,90)</span><br><span class="line">son.show()</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<pre><code>- son.py 文件
-
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># coding=utf-8</span><br><span class="line">from father import Father</span><br><span class="line"></span><br><span class="line"># Son 类</span><br><span class="line">class User(Father):</span><br><span class="line">  def __init__(self,name,age,sex,score):</span><br><span class="line">    Father.__init__(self,name,age,sex)</span><br><span class="line">    self.score = score</span><br><span class="line"></span><br><span class="line">  def show(self):</span><br><span class="line">    super(self)</span><br><span class="line">    print &quot;score:&quot;,self.score</span><br></pre></td></tr></table></figure>
-
-
-
-
-- test.py文件
-
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/python</span><br><span class="line"># coding=utf-8</span><br><span class="line">from son import Son</span><br><span class="line"></span><br><span class="line">son = Son(&quot;whh&quot;,29,1,90)</span><br><span class="line">son.show()</span><br></pre></td></tr></table></figure>
-</code></pre><h2 id="常用api"><a href="#常用api" class="headerlink" title="常用api"></a>常用api</h2><h3 id="日期时间"><a href="#日期时间" class="headerlink" title="日期时间"></a>日期时间</h3><ol>
+<h2 id="常用api"><a href="#常用api" class="headerlink" title="常用api"></a>常用api</h2><h3 id="日期时间"><a href="#日期时间" class="headerlink" title="日期时间"></a>日期时间</h3><ol>
 <li><p>耗时实现</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import time</span><br><span class="line"></span><br><span class="line">startTime = time.time() # 1606467920.91 当前时间合成的秒数</span><br><span class="line"># did some thing</span><br><span class="line">print &quot;cost time:%s&quot; %(time.time()-startTime)</span><br></pre></td></tr></table></figure>
 </li>
