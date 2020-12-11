@@ -42,7 +42,7 @@
 <li><p>组建介绍</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;</span><br><span class="line">&lt;a&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;b&gt;</span><br><span class="line">&lt;strong&gt;</span><br><span class="line">&lt;img&gt;</span><br><span class="line">&lt;input&gt;</span><br><span class="line">&lt;textarea&gt;</span><br><span class="line">&lt;select&gt;</span><br><span class="line">&lt;sup&gt;</span><br><span class="line">&lt;sub&gt;</span><br><span class="line">&lt;em&gt;</span><br><span class="line">&lt;del&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li><font color="red">行内元素特性</font>
+<li><font color="red">特性</font>
 
 <p>2.1 不能设置高、宽以及行高（大小由内容决定）。</p>
 <p>2.2 水平方向的padding和margin属性可以设置，但是垂直方向上的无效。</p>
@@ -55,7 +55,7 @@
 <li><p>组建介绍</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">&lt;form&gt;</span><br><span class="line">&lt;table&gt;</span><br><span class="line">&lt;h1&gt;~&lt;h6&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;p&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">&lt;ol&gt;</span><br><span class="line">&lt;address&gt;</span><br><span class="line">&lt;center&gt;</span><br><span class="line">&lt;pre&gt;</span><br><span class="line">&lt;dl&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li><font color="red">块级元素特性</font>
+<li><font color="red">特性</font>
 
 <p>2.1 总是另起一行。</p>
 <p>2.2 可以设置其高度、宽度、行高以及内外边距。</p>
@@ -68,11 +68,43 @@
 <li><p>组建介绍</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;img&gt;</span><br><span class="line">&lt;input&gt;</span><br><span class="line">&lt;td&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li><font color="red">行内块元素特性</font>
+<li><font color="red">特性</font>
 
 <p>2.1 和相邻的元素在同一行，但是之间会有空白间隙。</p>
 <p>2.2 默认的宽度是它们内容本身。</p>
 <p>2.3 宽度、高度、行高、外边距和内边距都可以设置。</p>
+</li>
+</ol>
+<h3 id="内联块级弹性伸缩盒（flex）"><a href="#内联块级弹性伸缩盒（flex）" class="headerlink" title="内联块级弹性伸缩盒（flex）"></a>内联块级弹性伸缩盒（flex）</h3><p>类似块级元素，但是对子元素有更加灵活的限制。</p>
+<ol>
+<li><p>组建介绍</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 无特定的组建，需要通过display来手动指定</span><br><span class="line">display: flex;</span><br></pre></td></tr></table></figure>
+</li>
+<li><font color="red">特性</font>
+
+<p>2.1 宽度默认是100%，这个和inline-flex不同（子元素总和）</p>
+<p>2.2 支持手动设置高宽，但是不支持设置line-height。</p>
+<p>2.3 两个flex元素会占两行。</p>
+</li>
+<li><font color="red">基本属性用法</font>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 让所有弹性盒模型对象的子元素按比例展示，且忽略它们内部的内容大小</span><br><span class="line">flex:1;</span><br><span class="line">// 沿水平主轴让元素从左向右排列</span><br><span class="line">flex-direction:row;</span><br><span class="line">// 让元素沿垂直主轴从上到下垂直排列</span><br><span class="line">flex-direction:column;</span><br><span class="line">// (默认)元素不换行,比如：一个div宽度100%，设置此属性，2个div宽度就自动变成各50%</span><br><span class="line">flex-wrap: nowrap; </span><br><span class="line">// 元素换行,比如：一个div宽度100%，设置此属性，第二个div就在第二行了</span><br><span class="line">flex-wrap: wrap; </span><br><span class="line">// 元素在主轴（页面）上左右两端或者上下两端开始排列</span><br><span class="line">justify-content:space-between; // justify-content的其他选项见css常用属性部分</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="内联块级弹性伸缩-inline-flex"><a href="#内联块级弹性伸缩-inline-flex" class="headerlink" title="内联块级弹性伸缩(inline-flex)"></a>内联块级弹性伸缩(inline-flex)</h3><p>与flex的不同是，inline-flex类似于行内元素，但与行内元素不同的是，他可以设置宽度，并且子元素宽度之和大于父元素时，与flex结果相同。</p>
+<ol>
+<li><p>组建介绍</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 无特定的组建，需要通过display来手动指定</span><br><span class="line">display: inline-flex;</span><br></pre></td></tr></table></figure>
+</li>
+<li><font color="red">特性</font>
+
+<p>2.1 默认的宽度受子元素决定。</p>
+<p>2.2 两个inline-flex元素不会换行。</p>
+<p>2.3 可以设置宽高，不支持设置line-height。</p>
+</li>
+<li><font color="red">基本属性用法</font>
+
+<p>同flex。</p>
 </li>
 </ol>
 <h2 id="css的单位"><a href="#css的单位" class="headerlink" title="css的单位"></a>css的单位</h2><h3 id="相对长度"><a href="#相对长度" class="headerlink" title="相对长度"></a>相对长度</h3><ol>
@@ -148,19 +180,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">box-sizing: border-box; // 对元素指定宽度和高度包括了 padding 和 border（为 IE 模型）</span><br><span class="line">box-sizing: content-box; // 元素的填充和边框布局和绘制指定宽度和高度除外（为 W3C 标准模型）</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="float"><a href="#float" class="headerlink" title="float"></a>float</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">float: right; // 元素向右浮动，浮动的元素会将行内和块级元素向左移动</span><br><span class="line">float: left; // 元素向左浮动</span><br><span class="line">float: none; // 默认，元素不浮动</span><br><span class="line">clear: both; // 将左右两侧的浮动清除</span><br></pre></td></tr></table></figure>
-<h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><font color="red">其中的display:flex常用于小程序的居中布局（小程序开发的小伙伴要注意），</font>当然需要配合flex的其他几个属性才能达到效果。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">display: inline; // 组建以行内元素展示</span><br><span class="line">display: inline-block; // 组建以行内块元素展示</span><br><span class="line">display: block; // 组建以块级元素展示</span><br><span class="line">display: none; // 组建不展示</span><br><span class="line">display: flex; // 弹性布局,设为flex布局以后，子元素的float、clear和vertical-align属性将失效</span><br></pre></td></tr></table></figure><br><br>### flex<br><br>1. flex<br><br>   让所有弹性盒模型对象的子元素按比例展示，且忽略它们内部的内容大小。<br><br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flex:1; // 所有元素都有相同的长度</span><br></pre></td></tr></table></figure><br><br>2. <font color="red">flex-direction</font>
+<h3 id="float"><a href="#float" class="headerlink" title="float"></a>float</h3><p>设置浮动属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">float: right; // 元素向右浮动，浮动的元素会将行内和块级元素向左移动</span><br><span class="line">float: left; // 元素向左浮动</span><br><span class="line">float: none; // 默认，元素不浮动</span><br><span class="line">clear: both; // 将左右两侧的浮动清除</span><br></pre></td></tr></table></figure>
+<h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><font color="red">其中的display:flex常用于小程序的居中布局（小程序开发的小伙伴要注意），</font>当然需要配合flex的其他几个属性才能达到效果。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">display: inline; // 组建以行内元素展示</span><br><span class="line">display: inline-block; // 组建以行内块元素展示</span><br><span class="line">display: block; // 组建以块级元素展示</span><br><span class="line">display: none; // 组建不展示</span><br><span class="line">display: flex; // 弹性布局,设为flex布局以后，子元素的float、clear和vertical-align属性将失效</span><br></pre></td></tr></table></figure><br><br>### justify-content<br><br><font color="red">元素在主轴（页面）上的排列。</font>
 
-<p>   用来控制容器内内容排列方向，此属性需要搭配<font color="red">display:flex</font>才能起效果。</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flex-direction:row; // 沿水平主轴让元素从左向右排列</span><br><span class="line">flex-direction:column; // 让元素沿垂直主轴从上到下垂直排列</span><br></pre></td></tr></table></figure>
-<ol>
-<li><font color="red">flex-wrap</font>
-
-<p>用来控制容器内内容是否换行，此属性需要搭配<font color="red">display:flex</font>才能起效果。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//  (默认)元素不换行,比如：一个div宽度100%，设置此属性，2个div宽度就自动变成各50%；</span><br><span class="line">flex-wrap: nowrap; </span><br><span class="line">// 元素换行,比如：一个div宽度100%，设置此属性，第二个div就在第二行了；</span><br><span class="line">flex-wrap: wrap;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a><font color="red">justify-content</font></h3><p>元素在主轴（页面）上的排列</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">justify-content: center; // 元素在主轴（页面）上居中排列</span><br><span class="line">justify-content: flex-start; // 元素在主轴（页面）上由左或者上开始排列</span><br><span class="line">justify-content: flex-end; // 元素在主轴（页面）上由右或者下开始排列</span><br><span class="line">justify-content: space-between; // 元素在主轴（页面）上左右两端或者上下两端开始排列</span><br><span class="line">justify-content: space-around; // 每个元素两侧的间隔相等。所以元素之间的间隔比元素与边框的间隔大一倍</span><br></pre></td></tr></table></figure>
 <h3 id="align"><a href="#align" class="headerlink" title="align"></a>align</h3><ol>
 <li><p>text-align</p>
