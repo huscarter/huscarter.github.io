@@ -56,12 +56,13 @@
 </li>
 </ol>
 <ul>
-<li>解析html (Parse html)</li>
-</ul>
-<ol>
-<li>生成dom树，js中通过document对象操作dom树。<br>2）生成cssom树，js中通过documn.styleSheets获取cssom树对其操作。<br>3）解析遇到css代码，浏览器会启动一个预解析器去先下载和解析css。解析遇到js代码，渲染主线程会暂停等网络线程下载完js后再解析js。</li>
-</ol>
+<li><p>解析html (Parse html)</p>
 <ul>
+<li>生成dom树，js中通过document对象操作dom树。</li>
+<li>生成cssom树，js中通过documn.styleSheets获取cssom树对其操作。</li>
+<li>解析遇到css代码，浏览器会启动一个预解析器去先下载和解析css。解析遇到js代码，渲染主线程会暂停等网络线程下载完js后再解析js。</li>
+</ul>
+</li>
 <li><p>样式计算 (Recalculate style)<br>主线程依次为树中的每个节点计算出它最终的样式，在这一过程中很多预设值会变成绝对值，比如<code>red</code>会变成<code>rgb(255,0,0)</code>；相对单位会变成绝对单位，比如<code>em</code>会变成<code>px</code>。这一步完成后，会得到一棵带有样式的DOM树。</p>
 </li>
 <li><p>布局 (Layout)<br>根据css样式计算dom节点的几何信息，例如节点尺寸、相对包含块的位置。完成后会得到布局树，因为受css样式影响，dom树和布局树并不一一对应。</p>
