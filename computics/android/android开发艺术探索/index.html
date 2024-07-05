@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>android开发艺术探索 | Here to stay</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">android开发艺术探索</h1><a id="logo" href="/.">Here to stay</a><p class="description">huscarter</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">android开发艺术探索</h1><div class="post-meta">2018-07-12<span> | </span><span class="category"><a href="/categories/computics/">computics</a><a href="/categories/computics/android/">android</a></span></div><div class="post-content"><h2 id="一、activity"><a href="#一、activity" class="headerlink" title="一、activity"></a>一、activity</h2><h3 id="activity的生命周期"><a href="#activity的生命周期" class="headerlink" title="activity的生命周期"></a>activity的生命周期</h3><ol>
+<li><p>典型情况<br>onCreate -&gt; (onRestart -&gt;)onStart(界面可见不可操作) -&gt; onResume(可操作) -&gt; running -&gt; onPause -&gt; onStop(不可见,当采用透明主题时不调用) -&gt; onDestroy</p>
+</li>
+<li><p>异常情况</p>
+</li>
+<li><p>1 系统配置发生变化（屏幕旋转）<br>可以配置android:configChanges=”orientation|screenSize”来避免重走生命周期，screenSize在api13之后屏幕旋转会导致activity重启。</p>
+</li>
+<li><p>1  内存不足（后台activity被杀死）<br>如果一个进程中没有四大组件，该进程将很快会被系统杀死，所以一些耗时操作最好时放在service中进行。</p>
+</li>
+</ol>
+<h3 id="activity的启动模式"><a href="#activity的启动模式" class="headerlink" title="activity的启动模式"></a>activity的启动模式</h3><ol>
+<li><p>launch model</p>
+</li>
+<li><p>1 standard</p>
+</li>
+<li><p>2 singleTop</p>
+</li>
+<li><p>3 singleTask</p>
+</li>
+<li><p>4 singleInstance 总是单独的任务栈</p>
+</li>
+<li><p>activity的flag</p>
+</li>
+<li><p>1 Intent.FLAG_ACTIVITY_CLEAR_TOP</p>
+</li>
+<li><p>2 Intent.FLAG_ACTIVITY_NEW_TASK</p>
+</li>
+<li><p>3 Intent.FLAG_ACTIVITY_SINGLE_TOP</p>
+</li>
+<li><p>4 Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS 用户不能通过历史栈回到此activity<br>可以通过配置android:taskAffinity=”xxx.xxx.xxx”来设置activity的任务栈，默认为包名。</p>
+</li>
+<li><p>IntentFilter</p>
+</li>
+<li><p>1 action<br>intent中的action要有一个和filter规则中定义的匹配就ok。</p>
+</li>
+<li><p>2 category<br>intent中的所有category都需要和filter规则中定义的匹配才ok</p>
+</li>
+<li><p>3 data<br>和action一样。系统默认的data其uri的scheme为content、file。</p>
+</li>
+<li><p>4 action、category和data如果都定义了，那么intent中也必须要将其三个都匹配才行。</p>
+</li>
+</ol>
+<h2 id="二、IPC"><a href="#二、IPC" class="headerlink" title="二、IPC"></a>二、IPC</h2><h3 id="IPC简介"><a href="#IPC简介" class="headerlink" title="IPC简介"></a>IPC简介</h3><p>inter process communication，就是进程间通信。一个app一般时对应一个进程，一个进程会又多个线程运行。<br>为CPU最小的调度单元，同一个进程会共享一段内存。</p>
+<h3 id="android-中多进程模式"><a href="#android-中多进程模式" class="headerlink" title="android 中多进程模式"></a>android 中多进程模式</h3><p>可以通过设置android:process=”:xxx”来实现让activity运行在不同的进程中。</p>
+<h3 id="android-IPC基础概念介绍"><a href="#android-IPC基础概念介绍" class="headerlink" title="android IPC基础概念介绍"></a>android IPC基础概念介绍</h3><ol>
+<li><p>serializable<br>java中的序列化接口，通过io操作实现序列化和反序列化，方便网络传输。serialVersionUID用于</p>
+</li>
+<li><p>parcelable<br>android中定义的序列化接口，通过writeToParcel和一系列read方法实现序列化和反序列化。parcelable主要是在<br>内存中实现序列化的，相比serializable更高效，但是如果通过网络传输相比serializable则更复杂。</p>
+</li>
+<li><p>binder<br>binder有很多的解释，是android的一个类，是进程间通信的一种方式。在android开发中binder主要用在service中包括aidl和messenger，<br>而messenger的底层也是aidl，所以通过aidl可以很好的解释binder。使用binder进行进程间传输的对象都必须是实现parcelable接口的。</p>
+</li>
+</ol>
+<h3 id="IPC方式"><a href="#IPC方式" class="headerlink" title="IPC方式"></a>IPC方式</h3><ol>
+<li><p>使用bundle<br>四大组件都支持bundle，但是有些情况bundle并不能满足所有数据都能放入bundle。</p>
+</li>
+<li><p>使用文件共享<br>android基于linux支持文件的并发读写，有可能不安全。同样使用xml来存储键值对的SharedPreferences也是同样的理由。</p>
+</li>
+<li><p>使用messenger<br>messenger通过传送message实现进程间通信，是一个轻量级的IPC方案。它是串行方式处理消息，不支持跨进程方法调用，aidl可以解决这个问题。</p>
+</li>
+</ol>
+<p>4.aidl<br>android interface definition language 是一种规范，遵循这哥规范实现进程间通信。支持基本数据类型、String、CharSequence、List（ArrayList）、<br>Map（HashMap）、Parcelable和AIDL。</p>
+<p>服务端的aidl需要考虑权限的限制，不能让所有客户端随意的访问。</p>
+<ol start="5">
+<li><p>ContentProvider<br>ContentProvider底层也是binder。</p>
+</li>
+<li><p>socket<br>略</p>
+</li>
+</ol>
+<h3 id="binder链接池"><a href="#binder链接池" class="headerlink" title="binder链接池"></a>binder链接池</h3><p>aidl的流程是一个service，一个aidl和一个继承了aidl接口中stud的类，由service在onBind中返回此类。为了避免多个service创建可以采用binder连接池，<br>服务端只有一个service，通过queryBinder获取相应模块的binder，从而减少服务端的开销。</p>
+<h3 id="选择合适的IPC"><a href="#选择合适的IPC" class="headerlink" title="选择合适的IPC"></a>选择合适的IPC</h3><p>略</p>
+<h2 id="三、View的事件体系"><a href="#三、View的事件体系" class="headerlink" title="三、View的事件体系"></a>三、View的事件体系</h2><h3 id="View的基础知识"><a href="#View的基础知识" class="headerlink" title="View的基础知识"></a>View的基础知识</h3><p>什么是View；View的位置参数；MontionEvent、TouchSlop；VelocityTracker、GestureDetector和Scroller。</p>
+<h3 id="View的滑动"><a href="#View的滑动" class="headerlink" title="View的滑动"></a>View的滑动</h3><p>通过scrollTo和scrollBy（简单适合对view内容滑动）、使用动画（简单，适合没有交互的复杂滑动）和改变布局（复杂适合有交互）。<br>其中动画分视图动画和属性动画，视图动画需要设置fillAfter，否则会回到初始状态。android3.0（api11）之后支持属性动画。</p>
+<h3 id="弹性滑动"><a href="#弹性滑动" class="headerlink" title="弹性滑动"></a>弹性滑动</h3><p>通过Scroller、动画和延时策略。</p>
+<h3 id="View的事件分发机制"><a href="#View的事件分发机制" class="headerlink" title="View的事件分发机制"></a>View的事件分发机制</h3><p>事件分发机制类似上级有个问题，一级级下达下去，有最底层的人员处理解决掉。如果最底层的人员不能解决掉，那么就一层层往上抛。<br>事件是由activity -&gt; window -&gt; decor  -&gt; view -&gt; 子view一级级往下分发，通过dispatchTouchEvent(MotionEvent ev),<br>onInterceptTouchEvent(MotionEvent ev)和onTouchEvent(MotionEvent ev)三个方法来实现。</p>
+<h3 id="View的滑动冲突"><a href="#View的滑动冲突" class="headerlink" title="View的滑动冲突"></a>View的滑动冲突</h3><p>通过外层的onInterceptTouchEvent事件拦截和内部的onTouchEvent事件里调用requestDisallowInterceptTouchEvent拦截事件实现。</p>
+<h2 id="四、view的工作原理"><a href="#四、view的工作原理" class="headerlink" title="四、view的工作原理"></a>四、view的工作原理</h2><h3 id="初试ViewRoot和DecorView和WindowManager"><a href="#初试ViewRoot和DecorView和WindowManager" class="headerlink" title="初试ViewRoot和DecorView和WindowManager"></a>初试ViewRoot和DecorView和WindowManager</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root.setView(view,params,parentView);</span><br></pre></td></tr></table></figure>
+<p>ViewRoot是连接DecorView和WindowManager的纽带。<br>View的绘制流程是从ViewRoot的performTraversals开始的（performMeasure、performLayout和performDraw）。</p>
+<h3 id="理解MeasureSpec"><a href="#理解MeasureSpec" class="headerlink" title="理解MeasureSpec"></a>理解MeasureSpec</h3><p>View的尺寸测量通过调用onMeasure方法实现。父View的MeasureSpec和View自身的LayoutParams决定了View的测量结果。</p>
+<h3 id="View的工作流程"><a href="#View的工作流程" class="headerlink" title="View的工作流程"></a>View的工作流程</h3><p>measure、layout和draw就是View的工作流程。由最顶层的view调用onMeasure、onLayout和onDraw方法开始执行往下执行<br>measure、layout和draw。</p>
+<h3 id="自定义View"><a href="#自定义View" class="headerlink" title="自定义View"></a>自定义View</h3><p>不规则的图形继承自View，重写onDraw；继承ViewGroup派生特殊的Layout（比较接近View的底层）；继承特定的View（比如TextView）；继承特定的ViewGroup。</p>
+<h2 id="五、理解RemoteViews"><a href="#五、理解RemoteViews" class="headerlink" title="五、理解RemoteViews"></a>五、理解RemoteViews</h2><h3 id="RemoteViews的应用"><a href="#RemoteViews的应用" class="headerlink" title="RemoteViews的应用"></a>RemoteViews的应用</h3><p>用于跨进程界面更新，NotificationManager和AppWidgetManager（本质是一个BroadCastReceiver）在开发过程中都会用到RemoteViews。</p>
+<h3 id="RemoteViews的内部机制"><a href="#RemoteViews的内部机制" class="headerlink" title="RemoteViews的内部机制"></a>RemoteViews的内部机制</h3><p>RemoteViews只支持有限的View，不支持findViewById，使用一系列set方法来设置属性。通过binder在进程间传递，之后通过反射（ReflectionAction）调用View的方法实现界面更新。</p>
+<h3 id="RemoteViews的意义"><a href="#RemoteViews的意义" class="headerlink" title="RemoteViews的意义"></a>RemoteViews的意义</h3><p>在跨进程频繁更新界面，而界面又不复杂的的情况下RemoteViews是很好的AIDL替代品。</p>
+<h2 id="六、Android的Drawable"><a href="#六、Android的Drawable" class="headerlink" title="六、Android的Drawable"></a>六、Android的Drawable</h2><p>drawable表示的是一种可以在canvas上进行绘制的概念，可以是图片和颜色。</p>
+<ol>
+<li><p>BitmapDrawable</p>
+</li>
+<li><p>1 android:antialias 抗锯齿</p>
+</li>
+<li><p>2 android:dither 抖动效果</p>
+</li>
+<li><p>3 android:tileMode 平铺模式</p>
+</li>
+<li><p>ShapeDrawable</p>
+</li>
+<li><p>LayerDrawable</p>
+</li>
+<li><p>StateListDrawable 状态Drawable集合</p>
+</li>
+<li><p>LevelListDrawable 等级Drawable集合</p>
+</li>
+<li><p>TransitionDrawable 淡入淡出效果</p>
+</li>
+<li><p>InsetDrawable 可以将其它Drawable嵌套在自己当中</p>
+</li>
+<li><p>ScaleDrawable 可以根据自己等级将Drawable缩放到一定比例</p>
+</li>
+<li><p>ClipDrawable 可以根据当前等级裁剪另一个Drawable</p>
+</li>
+<li><p>自定义Drawable很少用到，因为不能直接在XML中使用</p>
+</li>
+</ol>
+<h2 id="七、Android动画深入分析"><a href="#七、Android动画深入分析" class="headerlink" title="七、Android动画深入分析"></a>七、Android动画深入分析</h2><h3 id="View动画"><a href="#View动画" class="headerlink" title="View动画"></a>View动画</h3><ol>
+<li>平移(TranslateAnimation)</li>
+<li>旋转(RotateAnimation)</li>
+<li>缩放(ScaleAnimation)</li>
+<li>透明(AlphaAnimation)</li>
+</ol>
+<h3 id="帧动画"><a href="#帧动画" class="headerlink" title="帧动画"></a>帧动画</h3><p>播放一组预先定义好的图片</p>
+<h3 id="属性动画"><a href="#属性动画" class="headerlink" title="属性动画"></a>属性动画</h3><p>属性动画从android3.0（api 11）开始，老版本兼容可采用nineoldandroids库（其实内部是view动画实现）</p>
+<ol>
+<li><p>常用的几个类为ObjectAnimation、ValueAnimation和AnimationSet</p>
+</li>
+<li><p>差值器（TimeInterpolator）和估值器（TypeEvaluator）</p>
+</li>
+<li><p>1 差值器根据时间流失的百分比来计算出当前属性值改变的百分比。</p>
+</li>
+<li><p>2 估值器根据属性改变的百分比计算改变后的属性值。</p>
+</li>
+<li><p>属性动画的原理，该对象必须提供属性的get和set方法，动画在looper中执行通过反射调用属性的get和set方法设置属性值。</p>
+</li>
+<li><p>使用动画的注意事项</p>
+</li>
+<li><p>1 帧动画注意OOM</p>
+</li>
+<li><p>2 内存泄漏，一般是属性动画中的无限循环动画</p>
+</li>
+<li><p>3 兼容性问题，属性动画android 3.0（api 11）才支持的</p>
+</li>
+<li><p>4 不要使用px，尽量都使用dp</p>
+</li>
+<li><p>5 动画元素的交互，view动画的事件是保留在原来的位置，属性动画的事件位置则随view改变和改变</p>
+</li>
+<li><p>6 硬件加速推荐使用，android4.0（api 14）默认开启</p>
+</li>
+</ol>
+<h2 id="八、理解Window和WindowManager"><a href="#八、理解Window和WindowManager" class="headerlink" title="八、理解Window和WindowManager"></a>八、理解Window和WindowManager</h2><p>在android中所有的视图都是通过Window来呈现的，包括Activity、Dialog和Toast。Window是一个抽象类，具体实现是PhoneWindow；<br>WindowManager用于管理Window的创建和销毁。</p>
+<h3 id="Window和WindowManager"><a href="#Window和WindowManager" class="headerlink" title="Window和WindowManager"></a>Window和WindowManager</h3><ol>
+<li><p>WindowManager.LayoutParams 的flag属性</p>
+</li>
+<li><p>1 FLAG_NOT_FOCUSABLE(window不需要获取焦点)</p>
+</li>
+<li><p>2 FLAG_NOT_TOUCH_MODAL (window区域内的点击事件自己处理，区域外的交由底层window处理)</p>
+</li>
+<li><p>3 FLAG_SHOW_WHEN_CLOCKED（window可以显示在锁屏上）</p>
+</li>
+<li><p>WindowManager.LayoutParams 的type属性</p>
+</li>
+<li><p>1 应用级window（1-99）</p>
+</li>
+<li><p>2 子window（1000-1999）</p>
+</li>
+<li><p>3 系统级window（2000-2999）定义系统级别的window需要申请user-permission</p>
+</li>
+<li><p>WindowManager操控Window是通过添加、删除和更新Window里的view是显现。</p>
+</li>
+</ol>
+<h3 id="Window的内部机制"><a href="#Window的内部机制" class="headerlink" title="Window的内部机制"></a>Window的内部机制</h3><p>每个Window对应一个View和ViewRootImpl，Window和View通过ViewRootImpl建立联系。ViewRootImpl由WindowManagerGlobal（WindowManager的实现类）<br>创建。最后Window中View的添加、删除和更新通过ViewRootImpl调用WindowManagerService实现，这3个操作都是IPC过程。</p>
+<h3 id="Window的创建"><a href="#Window的创建" class="headerlink" title="Window的创建"></a>Window的创建</h3><ol>
+<li>Activity的创建</li>
+<li>Dialog的创建</li>
+<li>Toast的创建</li>
+</ol>
+<h2 id="九、四大组件的工作过程"><a href="#九、四大组件的工作过程" class="headerlink" title="九、四大组件的工作过程"></a>九、四大组件的工作过程</h2><h3 id="四大组件的运行状态"><a href="#四大组件的运行状态" class="headerlink" title="四大组件的运行状态"></a>四大组件的运行状态</h3><ol>
+<li>Activity</li>
+<li>Service</li>
+<li>BroadcastReceiver</li>
+<li>ContentProvider</li>
+</ol>
+<h3 id="Activity的工作过程"><a href="#Activity的工作过程" class="headerlink" title="Activity的工作过程"></a>Activity的工作过程</h3><ol>
+<li>通过Binder机制将创建Activity的消息通知给ActivityManagerService；</li>
+<li>根据activity的启动模式判断是否应该创建并将Activity放于栈顶；</li>
+<li>判断Activity是否已存在，如果存在置为resume状态，如果不存在重新开启创建；</li>
+<li>判断Activity的进程是否创建，没有开始创建，已创建开启Activity；</li>
+<li>调用Activity.attach初始化，回调onCreate方法，调用ActivityThread.handleResumeActivity将Activity设置为resume状态。</li>
+</ol>
+<h3 id="Service的工作过程"><a href="#Service的工作过程" class="headerlink" title="Service的工作过程"></a>Service的工作过程</h3><ol>
+<li><p>Service启动<br><img src="service%E5%90%AF%E5%8A%A8.jpg"></p>
+</li>
+<li><p>Service绑定<br><img src="service%E7%BB%91%E5%AE%9A.jpg"></p>
+</li>
+</ol>
+<h3 id="BroadcastReceiver的工作过程"><a href="#BroadcastReceiver的工作过程" class="headerlink" title="BroadcastReceiver的工作过程"></a>BroadcastReceiver的工作过程</h3><ol>
+<li>BroadcastReceiver注册</li>
+<li>BroadcastReceiver发送</li>
+<li>BroadcastReceiver接受</li>
+</ol>
+<h3 id="ContentProvider的工作过程"><a href="#ContentProvider的工作过程" class="headerlink" title="ContentProvider的工作过程"></a>ContentProvider的工作过程</h3><p>ContentProvider的onCrate先于Application的onCreate执行。</p>
+<h2 id="10、Android的消息机制"><a href="#10、Android的消息机制" class="headerlink" title="10、Android的消息机制"></a>10、Android的消息机制</h2><h3 id="Android消息机制概述"><a href="#Android消息机制概述" class="headerlink" title="Android消息机制概述"></a>Android消息机制概述</h3><p>创建Handler需要使用到当前线程的Looper来构建内部消息循环系统，如果当前线程没有Looper则会报错。（可以调用Looper.prepare创建Looper）<br>Handler创建完毕后，Looper和MessageQueue就可以和Handler系统工作了。通过Handler的post方法将一个Runnable投递到Handler内部的Looper中去处理或则<br>通过Handler的send方法发送消息，post方法最终也是调用send方法。当Handler的send方法被调用时，它会调用MessageQueue的enqueueMessage方法将这个消息<br>添加到消息队列中，然后Looper发现有新的消息到来时，就会处理这个消息，最终消息中的Runnable或者Handler的handleMessage方法会被调用。因为Looper所在<br>的线程时Handler被创建的线程，这样一样业务逻辑就切换到创建Handler的线程中去执行了。</p>
+<h3 id="Android消息机制分析"><a href="#Android消息机制分析" class="headerlink" title="Android消息机制分析"></a>Android消息机制分析</h3><ol>
+<li><p>ThreadLocal的工作原理</p>
+</li>
+<li><p>MessageQueue的工作原理</p>
+</li>
+<li><p>Looper的工作原理</p>
+</li>
+<li><p>Handler的工作原理</p>
+</li>
+</ol>
+<h3 id="主线程的消息循环"><a href="#主线程的消息循环" class="headerlink" title="主线程的消息循环"></a>主线程的消息循环</h3><h2 id="11、Android的线程和线程池"><a href="#11、Android的线程和线程池" class="headerlink" title="11、Android的线程和线程池"></a>11、Android的线程和线程池</h2><h3 id="主线程和子线程"><a href="#主线程和子线程" class="headerlink" title="主线程和子线程"></a>主线程和子线程</h3><p>android3.0（api 14）新特性</p>
+<ol>
+<li>主线程中不能做网络请求</li>
+<li>支持属性动画</li>
+<li>Fragment替代了ViewGroup</li>
+</ol>
+<h3 id="Android线程的形态"><a href="#Android线程的形态" class="headerlink" title="Android线程的形态"></a>Android线程的形态</h3><ol>
+<li>AsyncTask</li>
+<li>HandlerThread</li>
+<li>IntentService</li>
+</ol>
+<h3 id="Android中的线程池"><a href="#Android中的线程池" class="headerlink" title="Android中的线程池"></a>Android中的线程池</h3><ol>
+<li>FixedThreadPool 线程数量固定，空闲线程</li>
+<li>CacheThreadPool</li>
+<li>ScheduledThreadPool</li>
+<li>SingleThreadExecutor</li>
+</ol>
+<h2 id="12、Bitmap的加载和Cache"><a href="#12、Bitmap的加载和Cache" class="headerlink" title="12、Bitmap的加载和Cache"></a>12、Bitmap的加载和Cache</h2><h3 id="Bitmap的高效加载"><a href="#Bitmap的高效加载" class="headerlink" title="Bitmap的高效加载"></a>Bitmap的高效加载</h3><ol>
+<li><p>android中通过BitmapFactory的四个方法加载图片：decodeFile、decodeSource、decodeStream、decodeByteArray。</p>
+</li>
+<li><p>通过BitmapFactory.options来加载所需的尺寸，通过inSampleSize采样实现。<br>注意采样需要2次decode，而decodeStream采用 FileInputStream 时会出现问题，因为 FileInputStream采用有序的文件流，<br>会导致第二次decode拿不到stream。解决办法是通过文件流获取文件描述，再通过BitmapFactory.decodeFileDescriptor加载缩放后的图片。</p>
+</li>
+</ol>
+<h3 id="Android中的缓存策略"><a href="#Android中的缓存策略" class="headerlink" title="Android中的缓存策略"></a>Android中的缓存策略</h3><ol>
+<li>LruCache(least recent use cache)<br>LruCache是android3.1提供的缓存类，兼容早起版本可以使用support-v4包。它采用LinkedHashMap以强引用的方式存储外界的缓存对象，提供put和get方法来添加和删除缓存。<br>当缓存满时LruCache会移除较早使用的缓存对象，然后添加新缓存。</li>
+</ol>
+<p>强引用 Object o = new Object()<br>软引用 SoftReference<Object> sf = new SoftReference(); 内存不够被销毁<br>弱引用 WeakReference<Object> wf = new WeakReference(); 内存够当触发GC时也会被销毁<br>虚引用 PhantomReference<Object> pf = new PhantomReference();</p>
+<ol start="2">
+<li>DiskCache 磁盘缓存</li>
+</ol>
+<h3 id="ImageLoader的使用"><a href="#ImageLoader的使用" class="headerlink" title="ImageLoader的使用"></a>ImageLoader的使用</h3><h2 id="13、综合技术"><a href="#13、综合技术" class="headerlink" title="13、综合技术"></a>13、综合技术</h2><h3 id="CrashHandler"><a href="#CrashHandler" class="headerlink" title="CrashHandler"></a>CrashHandler</h3><p>略</p>
+<h3 id="Multidex来解决方法数越界"><a href="#Multidex来解决方法数越界" class="headerlink" title="Multidex来解决方法数越界"></a>Multidex来解决方法数越界</h3><p>略</p>
+<h3 id="Android的动态加载技术"><a href="#Android的动态加载技术" class="headerlink" title="Android的动态加载技术"></a>Android的动态加载技术</h3><ol>
+<li>资源的访问<br>通过调用AssetManager的addAssetPath发放，我们可以将一个apk中的资源加载到Resource对象中，由于addAssetPath隐藏在api中，所以我们只能通过反射。<br>[addAssetPat(assetManager,dexPath)]</li>
+<li>activity 生命周期的管理<br>通过提供生命周期接口，所有的插件Activity都实现此接口，通过代理的Activity调用插件Activity的生命周期方法。</li>
+<li>插件ClassLoader管理<br>为了防止多个ClassLoader加载同一个类造成类型转换错误，在代码中，通过将不通插件的ClassLoader村春在HashMap中，来保证不同插件中的类互不干扰。</li>
+</ol>
+<h3 id="反编译"><a href="#反编译" class="headerlink" title="反编译"></a>反编译</h3><p>略</p>
+<h2 id="14、JNI和NDK编程"><a href="#14、JNI和NDK编程" class="headerlink" title="14、JNI和NDK编程"></a>14、JNI和NDK编程</h2><h3 id="JNI的开发流程"><a href="#JNI的开发流程" class="headerlink" title="JNI的开发流程"></a>JNI的开发流程</h3><ol>
+<li>在java中声明native方法</li>
+<li>编译java原文件得到class文件，通过javah命令到处jni头文件</li>
+<li>实现jni方法，可以通过C或者是C++</li>
+<li>编译so库，可以通过gcc，然后运行使用</li>
+</ol>
+<h3 id="NDK的开发流程"><a href="#NDK的开发流程" class="headerlink" title="NDK的开发流程"></a>NDK的开发流程</h3><ol>
+<li>下载和配置NDK</li>
+<li>创建android项目，并声明所需的native方法</li>
+<li>实现项目中的native方法（test.cpp,Android.mk,Application.mk）</li>
+<li>通过ndk-build命令编译产生so文件</li>
+</ol>
+<h3 id="JNI的数据类型和类型签名"><a href="#JNI的数据类型和类型签名" class="headerlink" title="JNI的数据类型和类型签名"></a>JNI的数据类型和类型签名</h3><p>略</p>
+<h3 id="JNI调用java方法"><a href="#JNI调用java方法" class="headerlink" title="JNI调用java方法"></a>JNI调用java方法</h3><p>先是通过类名找到类，再通过方法名找到方法id，最后就可以调用这个方法了。</p>
+<h2 id="15、Android的性能优化"><a href="#15、Android的性能优化" class="headerlink" title="15、Android的性能优化"></a>15、Android的性能优化</h2><h3 id="Android性能优化"><a href="#Android性能优化" class="headerlink" title="Android性能优化"></a>Android性能优化</h3><h4 id="布局优化"><a href="#布局优化" class="headerlink" title="布局优化"></a>布局优化</h4><ol>
+<li><p>include标签</p>
+</li>
+<li><p>1 可以重用布局，配合merge可以减少布局层级。</p>
+</li>
+<li><p>merge标签</p>
+</li>
+<li><p>1 可以减少布局层级。</p>
+</li>
+<li><p>ViewStub 按需加载</p>
+</li>
+<li><p>1 因为ViewStub高宽都是0，所以不会参与布局。通过调用setVisible和inflate后被layout指定的布局替换；它能提高页面初始布局效率，在网络出错的业务场景中比较好用。</p>
+</li>
+<li><p>线性布局优于相对布局</p>
+</li>
+</ol>
+<h4 id="绘制优化"><a href="#绘制优化" class="headerlink" title="绘制优化"></a>绘制优化</h4><ol>
+<li>onDraw方法不要创建新对象</li>
+<li>onDraw方法不要做耗时任务</li>
+</ol>
+<h4 id="内存泄漏优化"><a href="#内存泄漏优化" class="headerlink" title="内存泄漏优化"></a>内存泄漏优化</h4><ol>
+<li>静态变量引用</li>
+<li>单利模式</li>
+<li>android无限循环动画<h4 id="响应速度优化和ANR分析"><a href="#响应速度优化和ANR分析" class="headerlink" title="响应速度优化和ANR分析"></a>响应速度优化和ANR分析</h4></li>
+<li>Activity 5s</li>
+<li>BroadcastReceiver 10s</li>
+<li>service 20s</li>
+</ol>
+<h4 id="ListView和Bitmap优化"><a href="#ListView和Bitmap优化" class="headerlink" title="ListView和Bitmap优化"></a>ListView和Bitmap优化</h4><ol>
+<li>避免在getView中做耗时操作</li>
+<li>根据滑动状态来控制任务的执行频率</li>
+<li>1 使用inSampleSize缩放图片</li>
+<li>2 android3.0以后可以使用inBitmap复用图片内存</li>
+<li>3 使用图片缓存</li>
+</ol>
+<h4 id="线程优化"><a href="#线程优化" class="headerlink" title="线程优化"></a>线程优化</h4><ol>
+<li>线程池可以重用线程避免创建和销毁的开销</li>
+<li>避免抢占CPU导致堵塞</li>
+</ol>
+</div><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/" rel="tag">android</a></li></ul></div><div class="post-nav"><a class="pre" href="/computics/android/android%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/">android知识梳理</a><a class="next" href="/history/%E8%AE%BA%E5%8F%A4%E8%AF%B4%E4%BB%8A/%E5%8C%97%E5%91%A8/">北周</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://huscarter.com"/></form></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="About"><img class="nofancybox" src="/img/avatar.png"/></a><p>Here to stay.</p><a class="info-icon" href="https://twitter.com/username" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:admin@domain.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://www.github.com/huscarter" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computics/">computics</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computics/android/">android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/flutter/">flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/j2ee/">j2ee</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/web/">web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E6%8A%80%E6%9C%AF%E5%91%A8%E8%BE%B9/">技术周边</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/">版本控制</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/economics/">economics</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/economics/%E5%95%86%E5%AD%A6%E9%99%A2/">商学院</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/history/">history</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/history/%E8%AE%BA%E5%8F%A4%E8%AF%B4%E4%BB%8A/">论古说今</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/%E6%97%A5%E8%AF%AD/">日语</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/%E8%8B%B1%E8%AF%AD/">英语</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/literature/">literature</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/literature/%E8%AF%97%E6%AD%8C/">诗歌</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/other/%E5%AE%B6%E8%A3%85/">家装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/%E8%A1%8C%E5%8A%A8%E5%AD%A6%E4%B9%A0/">行动学习</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/psychology/">psychology</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/psychology/%E4%BA%BA%E6%A0%BC%E5%BF%83%E7%90%86%E5%AD%A6/">人格心理学</a></li></ul></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/flutter/" style="font-size: 15px;">flutter</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 15px;">快捷键</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 15px;">物联网</a> <a href="/tags/%E5%BB%BA%E7%AB%99/" style="font-size: 15px;">建站</a> <a href="/tags/binder/" style="font-size: 15px;">binder</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%91%A8%E8%BE%B9/" style="font-size: 15px;">技术周边</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/es/" style="font-size: 15px;">es</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/jenkins/" style="font-size: 15px;">jenkins</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/groovy/" style="font-size: 15px;">groovy</a> <a href="/tags/h5/" style="font-size: 15px;">h5</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/kotlin/" style="font-size: 15px;">kotlin</a> <a href="/tags/nexus/" style="font-size: 15px;">nexus</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/proguard/" style="font-size: 15px;">proguard</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/ssm/" style="font-size: 15px;">ssm</a> <a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/%E8%A1%8C%E5%8A%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">行动学习</a> <a href="/tags/terminal/" style="font-size: 15px;">terminal</a> <a href="/tags/threejs/" style="font-size: 15px;">threejs</a> <a href="/tags/typescript/" style="font-size: 15px;">typescript</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/weex/" style="font-size: 15px;">weex</a> <a href="/tags/%E8%B4%A2%E6%8A%A5/" style="font-size: 15px;">财报</a> <a href="/tags/%E5%88%B7%E6%9C%BA/" style="font-size: 15px;">刷机</a> <a href="/tags/%E4%BA%94%E5%88%86%E9%92%9F%E5%95%86%E5%AD%A6%E9%99%A2/" style="font-size: 15px;">五分钟商学院</a> <a href="/tags/j2ee/" style="font-size: 15px;">j2ee</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/vite/" style="font-size: 15px;">vite</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 15px;">浏览器</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/%E5%8A%A0%E5%AF%86/" style="font-size: 15px;">加密</a> <a href="/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4/" style="font-size: 15px;">那些年</a> <a href="/tags/%E8%82%A1%E7%A5%A8/" style="font-size: 15px;">股票</a> <a href="/tags/%E9%87%8F%E5%8C%96/" style="font-size: 15px;">量化</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15px;">设计模式</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15px;">微信小程序</a> <a href="/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/" style="font-size: 15px;">读后感</a> <a href="/tags/%E6%94%AF%E4%BB%98%E5%AE%9D%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15px;">支付宝小程序</a> <a href="/tags/%E6%97%A5%E8%AF%AD/" style="font-size: 15px;">日语</a> <a href="/tags/%E5%AE%B6%E8%A3%85/" style="font-size: 15px;">家装</a> <a href="/tags/IDE/" style="font-size: 15px;">IDE</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/" style="font-size: 15px;">设计规范</a> <a href="/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 15px;">英语</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 15px;">数据结构</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-react%E5%9F%BA%E7%A1%80%E7%AF%87/">前端知识整理-react基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-vite%E7%AF%87/">前端知识整理-vite篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/android/android%E5%8F%8D%E7%BC%96%E8%AF%91%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/">android反编译知识整理</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/%E7%AE%97%E6%B3%95/%E5%8A%A0%E5%AF%86%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/">加密知识梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%AF%87/">前端知识整理-浏览器篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-%E7%BD%91%E7%BB%9C%E7%AF%87/">前端知识整理-网络篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-vue%E8%BF%9B%E9%98%B6%E7%AF%87/">前端知识整理-vue进阶篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-vue%E5%9F%BA%E7%A1%80%E7%AF%87/">前端知识整理-vue基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-vue%E8%AF%AD%E6%B3%95%E7%AF%87/">前端知识整理-vue语法篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/es5%E5%92%8Ces6%E7%9A%84%E5%8C%BA%E5%88%AB/">es5和es6的区别</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="https://blog.konghy.cn/" title="favorites:konghy" target="_blank">favorites:konghy</a><ul></ul><a href="http://www.ruanyifeng.com/blog/" title="favorites:ruanyf" target="_blank">favorites:ruanyf</a><ul></ul><a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a><ul></ul><a href="https://www.ruanyifeng.com/" title="阮一峰" target="_blank">阮一峰</a><ul></ul><a href="http://tengj.top/" title="嘟嘟独立技术" target="_blank">嘟嘟独立技术</a><ul></ul><a href="https://hellogithub.com/" title="hellogithub" target="_blank">hellogithub</a><ul></ul><a href="https://www.cnblogs.com/xiaolincoding" title="小林博客园" target="_blank">小林博客园</a><ul></ul><a href="https://yelog.org/" title="落叶阁" target="_blank">落叶阁</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">Here to stay.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

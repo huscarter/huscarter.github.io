@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>android项目开发规范 | Here to stay</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">android项目开发规范</h1><a id="logo" href="/.">Here to stay</a><p class="description">huscarter</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">android项目开发规范</h1><div class="post-meta">2016-07-12<span> | </span><span class="category"><a href="/categories/computics/">computics</a><a href="/categories/computics/android/">android</a></span></div><div class="post-content"><h2 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h2><h3 id="项目命名"><a href="#项目命名" class="headerlink" title="项目命名"></a>项目命名</h3><p>pascal，首字母一律大写。（如：TradingCoupon）<br>不推荐后面加版本号1.1.x（如：Trading1.1.6），如果线上版本出现了升级，升级后的版本可能会与当前的版本冲突；但是可以加第几期（如：TradingCoupon2）。</p>
+<h3 id="包命名"><a href="#包命名" class="headerlink" title="包命名"></a>包命名</h3><p>一律小写，格式为“com.公司.项目名.模块名”。(如：com.jushi.trading.bean)</p>
+<h3 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h3><ol>
+<li>静态变量：一律大写，字母之间用“_”分开。（如：SHARE_NAME_KEY）</li>
+<li>一般变量：字母之间用“_”分开。(如：user_name)</li>
+</ol>
+<h3 id="方法命名"><a href="#方法命名" class="headerlink" title="方法命名"></a>方法命名</h3><p>驼峰法camel，第一个首字母小写，剩下的首字母一律大写。（如：getOrderDetail(String order_id)）</p>
+<h3 id="文件命名"><a href="#文件命名" class="headerlink" title="文件命名"></a>文件命名</h3><ol>
+<li><p>java类命名（非接口）</p>
+</li>
+<li><p>1 pascal，首字母一律大写。如：UserAddress.java）</p>
+</li>
+<li><p>2 activity类，后面需要添加Activity。（如：UserAddressActivity.java）</p>
+</li>
+<li><p>3 adapter类，后面需要添加Adapter。（如：UserAddressAdapter.java）</p>
+</li>
+<li><p>4 fragment类，后面需要添加Fragment。（如：UserAddressFragment.java）</p>
+</li>
+<li><p>5 bean，后面不加Bean。（如：User .java）</p>
+</li>
+<li><p>6 Uitl类，需要添加Util。（如DateUtil.java）</p>
+</li>
+<li><p>7 数据库操作文件，后面要加Dao。（如：UserDao. java）</p>
+</li>
+<li><p>java类（接口）</p>
+</li>
+<li><p>1 普通的借口类，命名为IXxx.java。（如IuserRequest.java）</p>
+</li>
+<li><p>2 Listener回调之类的用OnXxLisenter形式。（如 OnClickListener.java）</p>
+</li>
+<li><p>3 其他的自定义，但是必须是pascal命名格式。</p>
+</li>
+<li><p>布局文件</p>
+</li>
+<li><p>1 Activity布局文件:一律按activity_xx.xml的形式。（如actvity_user_address.xml）</p>
+</li>
+<li><p>2 Adapter布局文件:一律按item_xx.xml的形式。 (如item_user_address.xml)</p>
+</li>
+<li><p>3 include 布局文件:一律以include_xx.xml的形式。（如：include_user_address.xml）</p>
+</li>
+<li><p>图片(一律按xx_xx_xx.png的形式)</p>
+</li>
+<li><p>1 图标：icon_user_address.png</p>
+</li>
+<li><p>2 按钮：</p>
+</li>
+<li><p>2.1 btn_commt.png（正常状态）</p>
+</li>
+<li><p>2.2 btn_commt_un.png（点击时的状态）</p>
+</li>
+<li><p>3 背景：bg_login.png</p>
+</li>
+<li><p>Drawable描述文件</p>
+</li>
+<li><p>1 带有点击效果的selector</p>
+</li>
+<li><p>1.1 selector_corner_orange.xml（圆角橙色）</p>
+</li>
+<li><p>1.2 selector_rectangle_orange.xml（直角橙色）</p>
+</li>
+<li><p>2 带有check属性值selector</p>
+</li>
+<li><p>2.1 chck_corner_orange.xml（圆角橙色）</p>
+</li>
+<li><p>2.2 chck_rectangle_orange.xml（直角橙色）</p>
+</li>
+<li><p>3 圆角有填充色</p>
+</li>
+<li><p>3.1 shape_corner_orange.xml</p>
+</li>
+<li><p>4 圆角有填充色有边框</p>
+</li>
+<li><p>4.1 shape_corner_border_orange.xml</p>
+</li>
+<li><p>5 圆角只有边框图</p>
+</li>
+<li><p>5.1 stroke_corner_orange.xml</p>
+</li>
+<li><p>6 直角只有边框图</p>
+</li>
+<li><p>6.1 stroke_rectangle_orange.xml</p>
+</li>
+</ol>
+<h3 id="android控件id命名"><a href="#android控件id命名" class="headerlink" title="android控件id命名"></a>android控件id命名</h3><p>控件:缩写</p>
+<ol>
+<li>RelativeLayout:rl_</li>
+<li>LinearLayout:ll_</li>
+<li>TextView:tv_</li>
+<li>EditText:et_</li>
+<li>ImageView:iv_</li>
+<li>Buttom:btn_</li>
+<li>CheckBox:cb_</li>
+<li>RadioButton:rb_</li>
+<li>RadioGroup:rg_</li>
+<li>TimerPicker:tp_</li>
+<li>ProgressBar:pb_</li>
+<li>ScrollView:sv_</li>
+<li>SimpleDraweeView:sdv_</li>
+<li>include:i_</li>
+<li>FrameLayout:fl_</li>
+<li>TableLayout:tl_</li>
+<li>GridLayout:gl_</li>
+<li>Switch:s_</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="类中的属性、方法和内部类声明需要区分放置"><a href="#类中的属性、方法和内部类声明需要区分放置" class="headerlink" title="类中的属性、方法和内部类声明需要区分放置"></a>类中的属性、方法和内部类声明需要区分放置</h3><ol>
+<li>类的属性一律放到类的顶部。</li>
+<li>类的方法声明放在属性部分下面。</li>
+<li>内部类放在方法部分下面。</li>
+</ol>
+<h3 id="创建基类，复用基础类中的公共方法"><a href="#创建基类，复用基础类中的公共方法" class="headerlink" title="创建基类，复用基础类中的公共方法"></a>创建基类，复用基础类中的公共方法</h3><ol>
+<li>创建BaseActivity基础类，定义通用的属性如Activity activity、Context context，CompositeSubscription subscription等；定义通用的方法抽象initView(){只做组件初始化},setListener(){只做事件添加},initData(){只做数据初始化}。</li>
+<li>创建Base Bean基础类，实现Serializable，公用String status_code，String message等属性。</li>
+<li>创建BaseFragment基础类，定义通用的属性如Activity activity、Context context，CompositeSubscription subscription等。定义通用的方法抽象initView(){组件初始化},setListener(){事件添加},initData(){数据初始化}。</li>
+</ol>
+<h3 id="每个方法只做一件事，保持方法简洁明了"><a href="#每个方法只做一件事，保持方法简洁明了" class="headerlink" title="每个方法只做一件事，保持方法简洁明了"></a>每个方法只做一件事，保持方法简洁明了</h3><p>不要将控件初始化和网络请求的代码写在同一个方法里。</p>
+<h3 id="实体类规则"><a href="#实体类规则" class="headerlink" title="实体类规则"></a>实体类规则</h3><ol>
+<li>除了类似RecycleView.ViewHolder的实体类可以是public修饰和不加getter and setter，其余的实体类都必须按照JavaBean 规范编写（private 修饰，通过get和set方法访问）。</li>
+<li>实体类统一放至bean包下，否则代码混淆后运行会报错。</li>
+</ol>
+<h3 id="对于Activity之间传递数据推荐使用Bundle携带数据"><a href="#对于Activity之间传递数据推荐使用Bundle携带数据" class="headerlink" title="对于Activity之间传递数据推荐使用Bundle携带数据"></a>对于Activity之间传递数据推荐使用Bundle携带数据</h3><p>Bundle可以在多个Activity之间重用，不需要重新装载数据。</p>
+<h3 id="展示实体类数据格式需要修改的，统一在实体类的get方法中做格式转换"><a href="#展示实体类数据格式需要修改的，统一在实体类的get方法中做格式转换" class="headerlink" title="展示实体类数据格式需要修改的，统一在实体类的get方法中做格式转换"></a>展示实体类数据格式需要修改的，统一在实体类的get方法中做格式转换</h3><p>比如订单（order）总价（total_price）保留2位小数，getTotalPrice(){返回格式为小数点2位}，这样的做法是只改一处，作用于整个项目。</p>
+<h3 id="网络请求Retrofit的Obsever必须基于同一个自定义的Obsever"><a href="#网络请求Retrofit的Obsever必须基于同一个自定义的Obsever" class="headerlink" title="网络请求Retrofit的Obsever必须基于同一个自定义的Obsever"></a>网络请求Retrofit的Obsever必须基于同一个自定义的Obsever</h3><h3 id="定义统一的加载组件"><a href="#定义统一的加载组件" class="headerlink" title="定义统一的加载组件"></a>定义统一的加载组件</h3><h3 id="定义统一的dialog组件"><a href="#定义统一的dialog组件" class="headerlink" title="定义统一的dialog组件"></a>定义统一的dialog组件</h3><h3 id="定义统一的WebView组件以及WebViewJsBridge交互类"><a href="#定义统一的WebView组件以及WebViewJsBridge交互类" class="headerlink" title="定义统一的WebView组件以及WebViewJsBridge交互类"></a>定义统一的WebView组件以及WebViewJsBridge交互类</h3><h3 id="所有组件显示的字符串都必须引用于string-xml"><a href="#所有组件显示的字符串都必须引用于string-xml" class="headerlink" title="所有组件显示的字符串都必须引用于string.xml"></a>所有组件显示的字符串都必须引用于string.xml</h3><h3 id="不推荐使用lambda表达式"><a href="#不推荐使用lambda表达式" class="headerlink" title="不推荐使用lambda表达式"></a>不推荐使用lambda表达式</h3><p>因为现在的lambda不稳定，会造成项目崩溃。</p>
+<h3 id="不要使用幽灵字符"><a href="#不要使用幽灵字符" class="headerlink" title="不要使用幽灵字符"></a>不要使用幽灵字符</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(notice_type==10011)&#123;  // 10011幽灵</span><br><span class="line">	// </span><br><span class="line">&#125; else if(notice_type==10013)&#123; // 10013幽灵</span><br><span class="line">	// </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="android资源文件定义"><a href="#android资源文件定义" class="headerlink" title="android资源文件定义"></a>android资源文件定义</h2><h3 id="统一按钮高度"><a href="#统一按钮高度" class="headerlink" title="统一按钮高度"></a>统一按钮高度</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">btn_height_max=56d</span><br><span class="line">btn_height_big=48dp</span><br><span class="line">btn_height_mid=32d</span><br><span class="line">btn_height_sma=24dp</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义title组件的高度"><a href="#定义title组件的高度" class="headerlink" title="定义title组件的高度"></a>定义title组件的高度</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title_height=56dp</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义条目的高度"><a href="#定义条目的高度" class="headerlink" title="定义条目的高度"></a>定义条目的高度</h3><p>每一个TextView,EditView等条目的高度。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">item_height=48p</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义系统左右边距的宽度"><a href="#定义系统左右边距的宽度" class="headerlink" title="定义系统左右边距的宽度"></a>定义系统左右边距的宽度</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app_pad=8dp</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义系统条目之间的间距"><a href="#定义系统条目之间的间距" class="headerlink" title="定义系统条目之间的间距"></a>定义系统条目之间的间距</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app_margin＝16p</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义字体大小-推荐使用dp"><a href="#定义字体大小-推荐使用dp" class="headerlink" title="定义字体大小,推荐使用dp"></a>定义字体大小,推荐使用dp</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">font_size_max_big=32dp</span><br><span class="line">font_size_max=24dp</span><br><span class="line">font_size_big=17dp</span><br><span class="line">font_size_mid=15dp</span><br><span class="line">font_size_sma=11dp</span><br><span class="line">font_size_sma_sma=9dp</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义drawable和内容的间距"><a href="#定义drawable和内容的间距" class="headerlink" title="定义drawable和内容的间距"></a>定义drawable和内容的间距</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drawable_pad=8dp</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义圆角弧度"><a href="#定义圆角弧度" class="headerlink" title="定义圆角弧度"></a>定义圆角弧度</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">radius＝5dp</span><br></pre></td></tr></table></figure>
+
+<h3 id="统一item图片的高宽"><a href="#统一item图片的高宽" class="headerlink" title="统一item图片的高宽"></a>统一item图片的高宽</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">img_width_big=100d</span><br><span class="line">img_width_mid=80dp</span><br><span class="line">img_width_sma=56dp</span><br><span class="line"></span><br><span class="line">img_height_big=100dp</span><br><span class="line">img_height_mid=80dp</span><br><span class="line">img_height_sma=56dp</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义EditView的padding"><a href="#定义EditView的padding" class="headerlink" title="定义EditView的padding"></a>定义EditView的padding</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">edit_pad=3dp</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义系统的基本色值"><a href="#定义系统的基本色值" class="headerlink" title="定义系统的基本色值"></a>定义系统的基本色值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app_color=</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义字体颜色。"><a href="#定义字体颜色。" class="headerlink" title="定义字体颜色。"></a>定义字体颜色。</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">text_color_black</span><br><span class="line">text_color_gray</span><br><span class="line">text_color_orange</span><br><span class="line">text_color_red</span><br></pre></td></tr></table></figure>
+
+<h3 id="strings-xml-使用注释区分activity"><a href="#strings-xml-使用注释区分activity" class="headerlink" title="strings.xml 使用注释区分activity"></a>strings.xml 使用注释区分activity</h3><h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><h3 id="定义gradle-properties统一管理项目中的版本信息"><a href="#定义gradle-properties统一管理项目中的版本信息" class="headerlink" title="定义gradle.properties统一管理项目中的版本信息"></a>定义gradle.properties统一管理项目中的版本信息</h3><h3 id="项目中创建版本说明文件CHANGELOG-md，纪录每一个版本的更新内容和时间"><a href="#项目中创建版本说明文件CHANGELOG-md，纪录每一个版本的更新内容和时间" class="headerlink" title="项目中创建版本说明文件CHANGELOG.md，纪录每一个版本的更新内容和时间"></a>项目中创建版本说明文件CHANGELOG.md，纪录每一个版本的更新内容和时间</h3><h3 id="版本服务器中创建branches和tags用来存放分支和历史版本"><a href="#版本服务器中创建branches和tags用来存放分支和历史版本" class="headerlink" title="版本服务器中创建branches和tags用来存放分支和历史版本"></a>版本服务器中创建branches和tags用来存放分支和历史版本</h3><h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><h3 id="每个类头部必须编写javadoc"><a href="#每个类头部必须编写javadoc" class="headerlink" title="每个类头部必须编写javadoc"></a>每个类头部必须编写javadoc</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Create by weihuihui@meishubao.com on $&#123;DATE&#125;</span><br><span class="line"> * &lt;p&gt;</span><br><span class="line"> * 类说明:&lt;br/&gt;</span><br><span class="line"> * 接受传值:&lt;br/&gt;</span><br><span class="line"> * 对外传值:&lt;br/&gt;</span><br><span class="line"> * @since </span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+
+<h3 id="public-修饰的变量必须编写javadoc"><a href="#public-修饰的变量必须编写javadoc" class="headerlink" title="public 修饰的变量必须编写javadoc"></a>public 修饰的变量必须编写javadoc</h3><h3 id="方法最好都写上注释（重要逻辑方法必须写）"><a href="#方法最好都写上注释（重要逻辑方法必须写）" class="headerlink" title="方法最好都写上注释（重要逻辑方法必须写）"></a>方法最好都写上注释（重要逻辑方法必须写）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @author 作者</span><br><span class="line"> * @version 版本</span><br><span class="line"> * @see 参考转向</span><br><span class="line"> * @param 参数</span><br><span class="line"> * @return 返回值</span><br><span class="line"> * @exception 抛出说明</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目结构（以包为例）"><a href="#项目结构（以包为例）" class="headerlink" title="项目结构（以包为例）"></a>项目结构（以包为例）</h2><ol>
+<li><p>UI层</p>
+</li>
+<li><p>1 activity</p>
+</li>
+<li><p>2 adapter</p>
+</li>
+<li><p>3 view（自定义view）</p>
+</li>
+<li><p>4 fragment</p>
+</li>
+<li><p>业务逻辑层</p>
+</li>
+<li><p>1 网络请求</p>
+</li>
+<li><p>1.1 net</p>
+</li>
+<li><p>数据库访问</p>
+</li>
+<li><p>1 dao</p>
+</li>
+<li><p>utility</p>
+</li>
+<li><p>1 DateFormat.java</p>
+</li>
+<li><p>2 Bitmap.java</p>
+</li>
+<li><p>3 Notification.java</p>
+</li>
+<li><p>4 Shared Preference.java</p>
+</li>
+<li><p>5 Environment.java</p>
+</li>
+<li><p>6 CommonUtil.java</p>
+</li>
+<li><p>data层</p>
+</li>
+<li><p>1 bean</p>
+</li>
+<li><p>2 provider</p>
+</li>
+<li><p>service</p>
+</li>
+<li><p>receiver</p>
+</li>
+<li><p>widget</p>
+</li>
+</ol>
+</div><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/" rel="tag">android</a></li></ul></div><div class="post-nav"><a class="pre" href="/computics/j2ee/java%E5%8F%91%E5%B1%95%E5%8F%B2/">java发展史</a><a class="next" href="/computics/j2ee/java%20socket%20demo/">java socket demo</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://huscarter.com"/></form></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="About"><img class="nofancybox" src="/img/avatar.png"/></a><p>Here to stay.</p><a class="info-icon" href="https://twitter.com/username" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:admin@domain.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://www.github.com/huscarter" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computics/">computics</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computics/android/">android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/flutter/">flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/j2ee/">j2ee</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/web/">web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E6%8A%80%E6%9C%AF%E5%91%A8%E8%BE%B9/">技术周边</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/">版本控制</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/economics/">economics</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/economics/%E5%95%86%E5%AD%A6%E9%99%A2/">商学院</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/history/">history</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/history/%E8%AE%BA%E5%8F%A4%E8%AF%B4%E4%BB%8A/">论古说今</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/%E6%97%A5%E8%AF%AD/">日语</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/%E8%8B%B1%E8%AF%AD/">英语</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/literature/">literature</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/literature/%E8%AF%97%E6%AD%8C/">诗歌</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/other/%E5%AE%B6%E8%A3%85/">家装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/%E8%A1%8C%E5%8A%A8%E5%AD%A6%E4%B9%A0/">行动学习</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/psychology/">psychology</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/psychology/%E4%BA%BA%E6%A0%BC%E5%BF%83%E7%90%86%E5%AD%A6/">人格心理学</a></li></ul></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/flutter/" style="font-size: 15px;">flutter</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 15px;">快捷键</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 15px;">物联网</a> <a href="/tags/%E5%BB%BA%E7%AB%99/" style="font-size: 15px;">建站</a> <a href="/tags/binder/" style="font-size: 15px;">binder</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%91%A8%E8%BE%B9/" style="font-size: 15px;">技术周边</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/es/" style="font-size: 15px;">es</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/jenkins/" style="font-size: 15px;">jenkins</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/groovy/" style="font-size: 15px;">groovy</a> <a href="/tags/h5/" style="font-size: 15px;">h5</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/kotlin/" style="font-size: 15px;">kotlin</a> <a href="/tags/nexus/" style="font-size: 15px;">nexus</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/proguard/" style="font-size: 15px;">proguard</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/ssm/" style="font-size: 15px;">ssm</a> <a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/%E8%A1%8C%E5%8A%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">行动学习</a> <a href="/tags/terminal/" style="font-size: 15px;">terminal</a> <a href="/tags/threejs/" style="font-size: 15px;">threejs</a> <a href="/tags/typescript/" style="font-size: 15px;">typescript</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/weex/" style="font-size: 15px;">weex</a> <a href="/tags/%E8%B4%A2%E6%8A%A5/" style="font-size: 15px;">财报</a> <a href="/tags/%E5%88%B7%E6%9C%BA/" style="font-size: 15px;">刷机</a> <a href="/tags/%E4%BA%94%E5%88%86%E9%92%9F%E5%95%86%E5%AD%A6%E9%99%A2/" style="font-size: 15px;">五分钟商学院</a> <a href="/tags/j2ee/" style="font-size: 15px;">j2ee</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/vite/" style="font-size: 15px;">vite</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 15px;">浏览器</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/%E5%8A%A0%E5%AF%86/" style="font-size: 15px;">加密</a> <a href="/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4/" style="font-size: 15px;">那些年</a> <a href="/tags/%E8%82%A1%E7%A5%A8/" style="font-size: 15px;">股票</a> <a href="/tags/%E9%87%8F%E5%8C%96/" style="font-size: 15px;">量化</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15px;">设计模式</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15px;">微信小程序</a> <a href="/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/" style="font-size: 15px;">读后感</a> <a href="/tags/%E6%94%AF%E4%BB%98%E5%AE%9D%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15px;">支付宝小程序</a> <a href="/tags/%E6%97%A5%E8%AF%AD/" style="font-size: 15px;">日语</a> <a href="/tags/%E5%AE%B6%E8%A3%85/" style="font-size: 15px;">家装</a> <a href="/tags/IDE/" style="font-size: 15px;">IDE</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/" style="font-size: 15px;">设计规范</a> <a href="/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 15px;">英语</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 15px;">数据结构</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-react%E5%9F%BA%E7%A1%80%E7%AF%87/">前端知识整理-react基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-vite%E7%AF%87/">前端知识整理-vite篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/android/android%E5%8F%8D%E7%BC%96%E8%AF%91%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/">android反编译知识整理</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/%E7%AE%97%E6%B3%95/%E5%8A%A0%E5%AF%86%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/">加密知识梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%AF%87/">前端知识整理-浏览器篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-%E7%BD%91%E7%BB%9C%E7%AF%87/">前端知识整理-网络篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-vue%E8%BF%9B%E9%98%B6%E7%AF%87/">前端知识整理-vue进阶篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-vue%E5%9F%BA%E7%A1%80%E7%AF%87/">前端知识整理-vue基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-vue%E8%AF%AD%E6%B3%95%E7%AF%87/">前端知识整理-vue语法篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/es5%E5%92%8Ces6%E7%9A%84%E5%8C%BA%E5%88%AB/">es5和es6的区别</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="https://blog.konghy.cn/" title="favorites:konghy" target="_blank">favorites:konghy</a><ul></ul><a href="http://www.ruanyifeng.com/blog/" title="favorites:ruanyf" target="_blank">favorites:ruanyf</a><ul></ul><a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a><ul></ul><a href="https://www.ruanyifeng.com/" title="阮一峰" target="_blank">阮一峰</a><ul></ul><a href="http://tengj.top/" title="嘟嘟独立技术" target="_blank">嘟嘟独立技术</a><ul></ul><a href="https://hellogithub.com/" title="hellogithub" target="_blank">hellogithub</a><ul></ul><a href="https://www.cnblogs.com/xiaolincoding" title="小林博客园" target="_blank">小林博客园</a><ul></ul><a href="https://yelog.org/" title="落叶阁" target="_blank">落叶阁</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">Here to stay.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

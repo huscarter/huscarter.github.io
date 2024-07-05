@@ -1,0 +1,560 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>android知识梳理 | Here to stay</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">android知识梳理</h1><a id="logo" href="/.">Here to stay</a><p class="description">huscarter</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">android知识梳理</h1><div class="post-meta">2018-08-06<span> | </span><span class="category"><a href="/categories/computics/">computics</a><a href="/categories/computics/android/">android</a></span></div><div class="post-content"><h1 id="java知识体系"><a href="#java知识体系" class="headerlink" title="java知识体系"></a>java知识体系</h1><h2 id="java运行原理"><a href="#java运行原理" class="headerlink" title="java运行原理"></a>java运行原理</h2><p>详情见：<a href="/j2ee/java%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86">java运行原理</a></p>
+<h3 id="java内存结构"><a href="#java内存结构" class="headerlink" title="java内存结构"></a>java内存结构</h3><ol>
+<li><p>程序计数器<br>用于存储当前线程所执行字节码的行号指示器。</p>
+</li>
+<li><p>栈 </p>
+</li>
+<li><p>1 虚拟机栈（每个方法在执行的同时都会创建一个栈桢用于存储局部变量表、操作数栈、动态链接、方法出口等信息）。</p>
+</li>
+<li><p>2 本地方法栈（本地方法栈为虚拟机使用到的native方法服务，有些虚拟机会把本地方法栈合并到虚拟机栈）。</p>
+</li>
+<li><p>堆<br>是java虚拟机所管理内存中最大的一块，他是线程共享的，在虚拟机启动时创建。此内存区域的唯一目的就是存放对象实例，也是GC垃圾收集管理的主要区域（也被称为GC heap）。</p>
+</li>
+<li><p>方法区<br>方法区是线程共享的内存区域，他被用于存储已被虚拟机加载的类信息、常量、静态变量和即时编译后的代码等数据。</p>
+</li>
+</ol>
+<h3 id="java文件结构"><a href="#java文件结构" class="headerlink" title="java文件结构"></a>java文件结构</h3><ol>
+<li>魔数（0xCAFEBABE）和class版本(从45开始)</li>
+<li>常量池</li>
+<li>访问标志</li>
+<li>类索引、父类索引和接口索引集合</li>
+<li>字段表集合</li>
+<li>方法表集合</li>
+<li>属性表集合</li>
+</ol>
+<h3 id="java文件的加载过程"><a href="#java文件的加载过程" class="headerlink" title="java文件的加载过程"></a>java文件的加载过程</h3><ol>
+<li><p>加载 </p>
+</li>
+<li><p>1 双亲委派机制:为了生成对象可识别（由同一ClassLoader加载），类首先交由父类加载器加载。</p>
+</li>
+<li><p>2 java自带的三大加载器：BootstrapClassLoader &gt; ExtensionClassLoader &gt; ApplicationCLassLoader</p>
+</li>
+<li><p>验证</p>
+</li>
+<li><p>1 验证.class文件的正确性，比如魔术、版本、访问标志等。（一般都是正确的，但是如果.class文件是自己通过其他方式生成就有可能出现问题）</p>
+</li>
+<li><p>准备</p>
+</li>
+<li><p>1 为静态变量分配内存（并不是为对象，此时还没有生成对象）</p>
+</li>
+<li><p>解析</p>
+</li>
+<li><p>1 将符号引用转成直接引用</p>
+</li>
+<li><p>初始化</p>
+</li>
+<li><p>1 执行类的构造方法，为对象分配内存和初始值。</p>
+</li>
+<li><p>卸载</p>
+</li>
+</ol>
+<h3 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h3><p>详情见：<a href="/j2ee/java%E8%99%9A%E6%8B%9F%E6%9C%BA">java虚拟机</a></p>
+<h4 id="虚拟机分类"><a href="#虚拟机分类" class="headerlink" title="虚拟机分类"></a>虚拟机分类</h4><ol>
+<li><p>Sun Class/Exact VM（外挂JIT）</p>
+</li>
+<li><p>HotSpot VM （JDK 1.3正式加入）</p>
+</li>
+<li><p>google android Dalvik VM（不是java虚拟机，因为不符合java虚拟机规范）</p>
+</li>
+</ol>
+<h4 id="虚拟机内对象分析"><a href="#虚拟机内对象分析" class="headerlink" title="虚拟机内对象分析"></a>虚拟机内对象分析</h4><ol>
+<li>对象的创建</li>
+<li>1 检测类是否被加载过否则先加载类</li>
+<li>2 分配内存空间（对具有内存整理的收集器采用指针碰撞，否则采用闲散列表）</li>
+<li>3 初始化为零值</li>
+<li>对象的内存布局</li>
+<li>1 对象头（用于存储对象自身的运行时数据，如哈希码、GC分代年龄、锁状态标志、偏向线程ID、偏向时间戳和类型指针等）</li>
+<li>2 实例数据（真正存储的有效信息，比如各种类型的字段内容，包括从父类继承过来的）</li>
+<li>对象的访问定位</li>
+<li>1 句柄访问</li>
+<li>2 直接访问</li>
+</ol>
+<h4 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h4><ol>
+<li><p>对象可回收算法</p>
+</li>
+<li><p>1 标记清除算法（对象被引用标记+1引用失效标记-1当标记为0时对象可被回收，不能很好解决对象相互引用的问题）</p>
+</li>
+<li><p>2 可达性分析算法（通过GC Root的节点向下搜索，搜索路径为引用连，当对象到达GC Root没有任何引用链时对象可被回收；激活的线程、栈中的对象和静态类可做GC Root）</p>
+</li>
+<li><p>垃圾收集算法</p>
+</li>
+<li><p>1 标记-清除算法（标记可回收的对象，一次性清除；缺点造成内存碎片）</p>
+</li>
+<li><p>2 复制算法（将内存氛围eden和survivor，GC时将存活的对象复制到survivor，一般应用在新生代）</p>
+</li>
+<li><p>3 标记-整理算法（标记可回收对象，将存活的对象移动到内存的一边，一般应用在永久代）</p>
+</li>
+<li><p>4 分代收集算法（新生代使用复制算法，永久代使用标记-整理算法）</p>
+</li>
+</ol>
+<h3 id="java线程"><a href="#java线程" class="headerlink" title="java线程"></a>java线程</h3><h4 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h4><ol>
+<li>new</li>
+<li>1 new Thread()</li>
+<li>runnable</li>
+<li>1 调用start()后线程等待CPU时间片分配</li>
+<li>blocked</li>
+<li>1 等待阻塞 调用wait()让线程等待某项工作完成</li>
+<li>2 同步阻塞 线程获取synchronized同步锁失败</li>
+<li>3 其他阻塞 </li>
+<li>3.1 调用sleep 直接睡眠不释放资源。</li>
+<li>3.2 调用join（内部调用wait清醒等待会释放资源）方法。(join方法解释:thread parent 的run方法中调用thread child的join方法，此时thread parent会等待thread child结束后再执行)</li>
+<li>3.3 调用yield 阻塞当前线程，当前线程的资源不会释放，但是让出下一次的cpu轮转让其他线程去执行任务。</li>
+<li>3.4 调用wait 当前线程释放资源等待。</li>
+<li>running 正在运行</li>
+<li>terminate 执行完程序或者异常退出</li>
+</ol>
+<h4 id="java锁（可见行、原子性和有序性）"><a href="#java锁（可见行、原子性和有序性）" class="headerlink" title="java锁（可见行、原子性和有序性）"></a>java锁（可见行、原子性和有序性）</h4><ol>
+<li><p>synchronized (能确保同一时刻只执行某个代码块或者方法，也可以确保线程的可见行)</p>
+</li>
+<li><p>1 普通同步方法（实例方法）：锁是当前实例对象，进入同步代码前要获得当前实例的锁</p>
+</li>
+<li><p>2 静态同步方法：锁是当前类的class对象，进入同步代码前要获得当前class对象的锁</p>
+</li>
+<li><p>3 同步方法块：锁是括号里面的对象，对给定对象加锁，进入同步代码块前要获得给定对象的锁。 </p>
+</li>
+<li><p>ReentrantLock（手动可重入锁）</p>
+</li>
+<li><p>1 创建一个ReentrantLock对象在线程中手动调用（提供lock和unlock方法）</p>
+</li>
+<li><p>2 如果构造方法传入true，则是公平锁，会根据等待的时长来调度资源</p>
+</li>
+<li><p>3 可以响应中断（interrupt）线程被中断后资源释放给其他线程</p>
+</li>
+<li><p>4 可以设置限时等待通过ReentrantLock.tryLock(long timeout,TimeUnit unit)，指定时间内没有获得锁就返回false，告诉业务逻辑去做其他事。</p>
+</li>
+<li><p>ReentrantReadWriteLock</p>
+</li>
+<li><p>1 一共一个读取锁和一个写入锁，读取锁是共享的，写入锁是互斥的。</p>
+</li>
+<li><p>volatile（确保对象的可见性，有序性）</p>
+</li>
+</ol>
+<h4 id="java的死锁"><a href="#java的死锁" class="headerlink" title="java的死锁"></a>java的死锁</h4><ol>
+<li>产生的原因<br>两个线程相互竞争对方的资源，造成彼此无法继续运行的现象。</li>
+<li>解决方案</li>
+<li>1 调整锁的范围</li>
+<li>3 调整锁的顺序</li>
+</ol>
+<h2 id="android知识体系"><a href="#android知识体系" class="headerlink" title="android知识体系"></a>android知识体系</h2><h3 id="android体系结构简介"><a href="#android体系结构简介" class="headerlink" title="android体系结构简介"></a>android体系结构简介</h3><ol>
+<li><p>application</p>
+</li>
+<li><p>framework</p>
+</li>
+<li><p>1 ActivityManager</p>
+</li>
+<li><p>2 WindowManager</p>
+</li>
+<li><p>3 ServiceManager</p>
+</li>
+<li><p>4 PackageManager</p>
+</li>
+<li><p>5 TelephoneManager</p>
+</li>
+<li><p>6 LocationManager</p>
+</li>
+<li><p>7 ContentProvider</p>
+</li>
+<li><p>8 NotificationManager</p>
+</li>
+<li><p>9 …</p>
+</li>
+<li><p>library &amp; runtime</p>
+</li>
+<li><p>1 SurfaceManager</p>
+</li>
+<li><p>2 OpenGL</p>
+</li>
+<li><p>3 SSL</p>
+</li>
+<li><p>4 WebKit</p>
+</li>
+<li><p>5 SQLite</p>
+</li>
+<li><p>6 …</p>
+</li>
+<li><p>linux kernel</p>
+</li>
+<li><p>1 Display Driver</p>
+</li>
+<li><p>2 Camera Driver</p>
+</li>
+<li><p>3 Bluetooth Driver</p>
+</li>
+<li><p>4 USB Driver</p>
+</li>
+<li><p>5 IBinder Driver</p>
+</li>
+<li><p>6 WIFI Driver</p>
+</li>
+<li><p>7 Power Driver</p>
+</li>
+<li><p>8 …</p>
+</li>
+</ol>
+<h3 id="Context（abstract-class-Context）"><a href="#Context（abstract-class-Context）" class="headerlink" title="Context（abstract class Context）"></a>Context（abstract class Context）</h3><p>官方定义：提供了关于应用程序全局信息的接口。可以用来开启Activity、Service发送广播、获取资源和数据库等；可以理解context为剧本，四大组件为主演。</p>
+<ol>
+<li>Activity extends ContextThemeWrapper</li>
+<li>Service extends ContextWrapper</li>
+<li>Application extends ContextWrapper</li>
+<li>BroadcastReceiver 和 ContentProvider不是Context</li>
+<li>getApplication 和 getApplicationContext其实地址指向相同，只不过getApplication只有Activity和Service提供接口</li>
+</ol>
+<h3 id="android的启动过程"><a href="#android的启动过程" class="headerlink" title="android的启动过程"></a><a href="android/android%E7%9A%84%E5%90%AF%E5%8A%A8">android的启动过程</a></h3><h3 id="activity的加载过程"><a href="#activity的加载过程" class="headerlink" title="activity的加载过程"></a>activity的加载过程</h3><h3 id="android四大组建工作原理"><a href="#android四大组建工作原理" class="headerlink" title="android四大组建工作原理"></a>android四大组建工作原理</h3><h4 id="activity"><a href="#activity" class="headerlink" title="activity"></a>activity</h4><ol>
+<li><p>生命周期</p>
+</li>
+<li><p>1 普通：onCreate–&gt;onStart(可见)–&gt;onResume(可操作)–&gt;running–&gt;onPause(不可操作、内存不足可能回收)–&gt;onStop(不可见、必要时可能回收)–&gt;onDestroy</p>
+</li>
+<li><p>2 页面被覆盖重新展示：onPause –&gt; onStop –&gt;被覆盖–&gt;重新展示–&gt;onRestart–&gt;onStart–&gt;onResume // 注意：只有旧的页面onPause之后新的页面才会走onCreate</p>
+</li>
+<li><p>3 配置发生修改：onPause –&gt; onSaveInstanceState(一定是在onStop之前) –&gt; onStop –&gt; onDestroy–&gt;onCreate–&gt;–&gt;onStart–&gt;onRestoreInstanceState（一定是在onStart之后）–&gt;onResume </p>
+</li>
+<li><p>4 可通过android:configChanges=”orientation”来设置是否发生修改</p>
+</li>
+<li><p>5 按home键：onPause –&gt; onSaveInstanceState(一定是在onStop之前) –&gt; onStop –&gt; home –&gt;onSaveInstanceState –&gt; onRestart –&gt; onStart –&gt; onResume</p>
+</li>
+<li><p>launch model</p>
+</li>
+<li><p>1 standard 每次启动一个Activity都会重新创建一个新的实例，不管这个实例是否已经存在；谁启动了这个Activity，那么这个Activity就运行在启动它的那个Activity所在的栈中。</p>
+</li>
+<li><p>2 singleTop 如果新Activity已经位于任务栈的栈顶那么此Activity不会被重新创建，同时它的onNewIntent方法会被回调。如果新Activity的实例已存在但不是位于栈顶，那么新Activity仍然会重新重建。</p>
+</li>
+<li><p>3 singleTask 只要Activity在一个栈中存在，那么多次启动此Activity都不会重新创建实例，系统会回调其onNewIntent；同时singleTask默认具有clearTop的效果。</p>
+</li>
+<li><p>4 singleInstance 除了具有singleTask模式的所有特性外，具有此种模式的Activity只能单独地位于一个任务栈中。</p>
+</li>
+<li><p>TaskAffinity （任务相关属性）</p>
+</li>
+<li><p>1 TaskAffinity用于设置任务栈属性，注意不能和包名相同否则等于没有设置</p>
+</li>
+<li><p>2 只能和SingleTask 和 allowTaskReparenting（允许任务重新装修）配合使用，否则无效。</p>
+</li>
+<li><p>allowTaskReparenting</p>
+</li>
+<li><p>1 a应用启动了b应用的activityC，回到桌面点击b应用图标，此时会回到activityC。</p>
+</li>
+</ol>
+<h4 id="service"><a href="#service" class="headerlink" title="service"></a>service</h4><ol>
+<li><p>生命周期</p>
+</li>
+<li><p>1 startService–&gt;onCreate（多次 startService 只会调用一次）–&gt;onStartCommand（startService次数一样）–&gt;running–&gt;onDestroy（只会走一次）</p>
+</li>
+<li><p>2 bindService–&gt;onCreate（多次 bindService 只会调用一次）–&gt;onBind（多次 bindService 只会调用一次）–&gt;binding–&gt;onUnBind（只会走一次）–&gt;onDestroy（只会走一次）</p>
+</li>
+<li><p>启动方式</p>
+</li>
+<li><p>1 startService</p>
+</li>
+<li><p>1.1 必须手动调用stopService或者通过service的stopSelf停止，否则会一直运行。</p>
+</li>
+</ol>
+<p>2.2 bindService<br>2.2.1 可以通过unbindService停止，当activity关闭时也会自动停止。</p>
+<ol start="3">
+<li>startService &amp; bindService || bindService &amp; startService（如果一个service被混合了启动和绑定状态）</li>
+<li>1 先调用stopService不会直接走 onDestroy，而是需要再调用 unBindService 才会执行unBind和onDestroy</li>
+<li>2 如果先调用unBindService则走unBind回调，再调用stopService才会走onDestroy回调。</li>
+<li>2 关闭activity效果等同unBind，后面必须再调用stop才能停止service。</li>
+</ol>
+<h4 id="broadcast-receiver"><a href="#broadcast-receiver" class="headerlink" title="broadcast receiver"></a>broadcast receiver</h4><ol>
+<li><p>广播的注册</p>
+</li>
+<li><p>1 静态注册（AndroidManifest），不需要取消注册</p>
+</li>
+<li><p>2 java代码动态注册，需要自己取消注册</p>
+</li>
+<li><p>发送</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = new Intent();</span><br><span class="line">intent.setAction(&quot;com.ryg.receiver.LAUNCH&quot;);</span><br><span class="line">sendBroadcast(intent);</span><br></pre></td></tr></table></figure></li>
+<li><p>接收</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onReceive(Context context,Intent intent) &#123;</span><br><span class="line"> // onReceive函数不能做耗时的事情，参考值：10s以内</span><br><span class="line"> Log.d(&quot;scott&quot;,&quot;on receive action=&quot; + intent.getAction());</span><br><span class="line"> String action = intent.getAction();</span><br><span class="line"> // do some works</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="content-provider"><a href="#content-provider" class="headerlink" title="content provider"></a>content provider</h4><p>略</p>
+<h4 id="fragment"><a href="#fragment" class="headerlink" title="fragment"></a>fragment</h4><ol>
+<li><p>fragment的作用</p>
+</li>
+<li><p>1 起初为了适配平板宽屏设备，因其特性可以装载在activity实现tab切换。</p>
+</li>
+<li><p>fragment的使用方式</p>
+</li>
+<li><ol>
+<li>静态</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>动态</li>
+</ol>
+</li>
+<li><p>fragment的生命周期</p>
+</li>
+</ol>
+<h4 id="SharedPreference"><a href="#SharedPreference" class="headerlink" title="SharedPreference"></a>SharedPreference</h4><ol>
+<li>获取的是SharedPreference单利加载入内存，所以不要存储大量数据。</li>
+<li>SharedPreference的get和put方法都加了同步锁，单个进程是线程安全的。</li>
+<li>SharedPreference每次edit都会生成EditorImpl对象，推荐多次操作一次提交。</li>
+<li>SharedPreference在写入磁盘时会生成.back备份文件，首次获取sp对象时发现备份文件会见备份文件重新命名当作正式文件，在多进程中可能会造成源文件信息丢失。</li>
+</ol>
+<h4 id="Android进程的优先级"><a href="#Android进程的优先级" class="headerlink" title="Android进程的优先级"></a>Android进程的优先级</h4><ol>
+<li>前台进程</li>
+<li>1 activity（正在和用户交互的）</li>
+<li>2 service（正在运行或者是被标记为前台）</li>
+<li>3 broadcast receiver（正在执行onReceive方法）</li>
+<li>可见不可交互</li>
+<li>1 activity（被遮挡部分的activity）</li>
+<li>后台进程</li>
+<li>1 activity（不可见）</li>
+<li>2 service（等待bind）</li>
+<li>3 broadcast receiver（等待接受消息）</li>
+<li>空进程</li>
+<li>1 Android经常会将走完生命周期的组件保存在内存以待之后启动使用，用来提高启动速度。</li>
+</ol>
+<h3 id="android线程池"><a href="#android线程池" class="headerlink" title="android线程池"></a>android线程池</h3><h4 id="ThreadPoolExecutor-int-corePoolSize-int-maximumPoolSize-long-keepAliveTime-TimeUnit-unit-BlockingQueue-workQueue-ThreadFactory-threadFactory"><a href="#ThreadPoolExecutor-int-corePoolSize-int-maximumPoolSize-long-keepAliveTime-TimeUnit-unit-BlockingQueue-workQueue-ThreadFactory-threadFactory" class="headerlink" title="ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,BlockingQueue workQueue,ThreadFactory threadFactory)"></a>ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,BlockingQueue<Runnable> workQueue,ThreadFactory threadFactory)</h4><ol>
+<li>corePoolSize：核心线程数（一般cpu数+1）；默认情况下核心线程会在线程池中一直存活。</li>
+<li>maximumPoolSize：线程池所能容纳的最大线程数（一般cpu数*2+1）；当活动线程数达到这个数值后，后续的新任务将会被阻塞。</li>
+<li>keepAliveTime：非核心线程闲置时的超时时长（一般1s）；超过这个时长非核心线程就会被回收，当allowCoreThreadTimeOut设置为true，此时长同样作用于核心线程。</li>
+<li>workQueue：工作队列（一般128）；超过最大线程数时新任务存放于此。如果爆满会抛出RejectedExecutionException。</li>
+</ol>
+<h4 id="ThreadPool分类"><a href="#ThreadPool分类" class="headerlink" title="ThreadPool分类"></a>ThreadPool分类</h4><ol>
+<li><p>FixedThreadPool（会一直有线程）</p>
+</li>
+<li><p>1 只有固定的核心线程数且不会销毁，除非线程池关闭；任务队列大小无限制。</p>
+</li>
+<li><p>2 用于快速响应外界任务。</p>
+</li>
+<li><p>CacheThreadPool（有可能闲暇时无任何线程）</p>
+</li>
+<li><p>1 只有非核心线程数，大小为Integer.MAX_VALUE，闲置60s后线程会被销毁；任务队列SynchronousQueue不存储任何任务，来任务直接用线程执行。</p>
+</li>
+<li><p>2 用于处理大量短时间的任务。</p>
+</li>
+<li><p>ScheduledThreadPool（接近ThreadPoolExecutor）</p>
+</li>
+<li><p>1 核心线程数固定；非核心线程数没有限制，但是一旦闲置就会被回收。</p>
+</li>
+<li><p>2 用于处理周期性重复执行的任务</p>
+</li>
+<li><p>SingleThreadPool（只有一个核心线程）</p>
+</li>
+<li><p>1 核心线程数1个；无非核心线程；有任务队列。</p>
+</li>
+<li><p>2 略</p>
+</li>
+</ol>
+<h3 id="View"><a href="#View" class="headerlink" title="View"></a>View</h3><h4 id="View的事件分发机制"><a href="#View的事件分发机制" class="headerlink" title="View的事件分发机制"></a>View的事件分发机制</h4><p>事件分发机制类似上级有个问题，一级级下达下去，有最底层的人员处理解决掉。如果最底层的人员不能解决掉，那么就一层层往上抛。<br>事件是由activity -&gt; window -&gt; decor  -&gt; view -&gt; 子view一级级往下分发，通过dispatchTouchEvent(MotionEvent ev),onInterceptTouchEvent(MotionEvent ev)和onTouchEvent(MotionEvent ev)三个方法来实现。<br>如下面的为代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public boolean dispatchTouchEvent(MotionEvent ev) &#123; </span><br><span class="line">    boolean consume = false;</span><br><span class="line">    if(onInterceptTouchEvent(ev)) &#123; </span><br><span class="line">        consume = onTouchEvent(ev);</span><br><span class="line">    &#125; else &#123; </span><br><span class="line">        consume = child.dispatchTouchEvent(ev); </span><br><span class="line">    &#125;</span><br><span class="line">    return consume; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="View的滑动冲突"><a href="#View的滑动冲突" class="headerlink" title="View的滑动冲突"></a>View的滑动冲突</h4><p>通过外层的onInterceptTouchEvent事件拦截和内部的onTouchEvent事件里调用 requestDisallowInterceptTouchEvent 拦截事件实现。</p>
+<h4 id="view的动画"><a href="#view的动画" class="headerlink" title="view的动画"></a>view的动画</h4><ol>
+<li>View动画（补间动画），系统提供基础抽象类类Animation</li>
+<li>1 种类</li>
+<li>1.1 TranslateAnimation（平移动画）</li>
+<li>1.2 ScaleAnimation（缩放动画）</li>
+<li>1.3 RotateAnimation（旋转动画）</li>
+<li>1.4 AlphaAnimation（透明动画）</li>
+</ol>
+<p>1.2 用途<br>1.2.1 activity切换效果<br>1.2.2 ViewGroup的出场效果<br>1.2.3 列表item的出场效果（可以通过LayoutAnimation简单实现哦）</p>
+<ol start="2">
+<li><p>帧动画，系统提供基类AnimationDrawable<br>播放一张张图片，也是也是view动画，只不过和平移、缩放之类的不同而已。一般用在类似gif的效果实现。</p>
+</li>
+<li><p>属性动画（api11加入），提供基类ValueAnimation、ObjectAnimation和AnimationSet<br>只要该对象有此属性就可以动画，功能强大。老版本通过NineOldAndroid间接实现此效果，但是本质依然为view动画。</p>
+</li>
+<li><p>1 时间插值器（TimeInterpolator）按照时间流逝百分比计算属性值改变百分比。</p>
+</li>
+<li><p>2 类型估值器（TypeEvaluator）按照属性变化百分比计算变化后的属性值。</p>
+</li>
+<li><p>3 属性动画的原理，其实是通过反射调用对象属性的set方法在渲染之前修改属性值实现的。如果动画没有给定初始值，对象属性需要提供get方法。</p>
+</li>
+<li><p>动画需要注意事项</p>
+</li>
+<li><p>1 OOM容易出现在帧动画，尽量避免使用大图，帧动画少用。</p>
+</li>
+<li><p>2 内存泄露，属性动画中有无限循环的动画，activity关闭前需要停止，否则activity不会被销毁。</p>
+</li>
+<li><p>3 view动画状态问题，view动画没有真正改变view的状态，动画之后之后setVisibility隐藏不了，需要调用view.clearAnimation</p>
+</li>
+<li><p>4 view动画位置问题，view动画视觉上位置发生了变化，但是实际相对父空间的left、top等值没有变动，触摸事件仍然是原来的位置，需要手动设置layout以更新位置。（属性动画没有此问题）</p>
+</li>
+</ol>
+<h3 id="android-的IPC"><a href="#android-的IPC" class="headerlink" title="android 的IPC"></a>android 的IPC</h3><p>略</p>
+<h3 id="android的handler机制"><a href="#android的handler机制" class="headerlink" title="android的handler机制"></a>android的handler机制</h3><p>Handle,MessageQueue和Looper共同协作的过程。</p>
+<ol>
+<li><p>MessageQueue消息队列用于存储、查询和删除handle发送的消息，MessageQueue是单链表结构，所以它的插入和删除比较快。<br>MessageQueue提供了enqueueMessage和next方法来插入和查询消息，next方法是一个无限循环的方法”for(;;)”，用于读取消息并删除以读取的消息，<br>如果没有消息，会执行nativePollOnce(ptr,-1)进入等待状态。</p>
+</li>
+<li><p>Looper通过ThreadLocal实现，作用是创建和使用MessageQueue。Looper的构造方法创建了MessageQueue，Looper的loo()方法进行了消息循环。</p>
+</li>
+<li><p>Handler是消息的发送和接收处理者。消息发送分两种一种是post(Runnable)，一种是send(Message);其实post最终也是调用send(Message)，<br>Runnable被赋值给了Message的callback属性。最后Looper循环到了消息会调用handle的dispatchMessage方法将逻辑处理切回到handle线程。</p>
+</li>
+<li><p>屏障消息</p>
+</li>
+<li><p>异步消息</p>
+</li>
+</ol>
+<h3 id="android的图片处理"><a href="#android的图片处理" class="headerlink" title="android的图片处理"></a>android的图片处理</h3><p>Android对每一个app分配的内存使用大小有限，而图片加载十分消耗内存，所以图片处理在Android中是一个重点。</p>
+<ol>
+<li><p>Bitmap的加载：decodeFile,decodeResource,decodeStream和decodeByteArray。</p>
+</li>
+<li><p>采用BitmapFactory.option来对图片进行处理，一般是通过inSampleSize实现取样处理。</p>
+</li>
+<li><p>通过LruCache和DiskLruCache实现内存和本地缓存。LRU（最近最少使用算法）是通过期LinkedHashMap数据结构实现的，LinkedHashMap是有序的Map，其顺序<br>有两种（插入顺序和读取顺序）；LRU采用读取顺序，如果数据被读取了一次，该数据会被放置链表的末尾。</p>
+</li>
+</ol>
+<h3 id="android的组件篇"><a href="#android的组件篇" class="headerlink" title="android的组件篇"></a>android的组件篇</h3><h4 id="RecyclerView"><a href="#RecyclerView" class="headerlink" title="RecyclerView"></a>RecyclerView</h4><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/80475040">参考博文</a></p>
+<ol>
+<li>LayoutManager（用于控制item的排放，横、纵和叠加）</li>
+<li>RecyclerView.Adapter（规范ViewHolder和缓存机制）</li>
+<li>ItemAnimator（可以根据ViewHolder在RecyclerView的各个状态添加动画）</li>
+<li>ItemDecoration（添加item的分割线）</li>
+<li>缓存机制<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public final class Recycler &#123;</span><br><span class="line">    // Scrap (view)：在布局期间进入临时分离状态的子视图。</span><br><span class="line">    </span><br><span class="line">    // 存放ViewHolder对象的ArrayList,这一级缓存是没有容量限制的，只要符合条件的我来者不拒</span><br><span class="line">    final ArrayList&lt;ViewHolder&gt; mAttachedScrap = new ArrayList&lt;&gt;();</span><br><span class="line">    // 存放的是发生了变化的ViewHolder</span><br><span class="line">    ArrayList&lt;ViewHolder&gt; mChangedScrap = null;</span><br><span class="line">    // 存放的是dettach掉的视图</span><br><span class="line">    final ArrayList&lt;ViewHolder&gt; mCachedViews = new ArrayList&lt;ViewHolder&gt;();</span><br><span class="line">    // 保存的ViewHolder不仅仅是removed掉的视图，而且是恢复了出厂设置的视图</span><br><span class="line">    RecycledViewPool mRecyclerPool;</span><br><span class="line">    // 这一级缓存是留给开发者自由发挥的</span><br><span class="line">        private ViewCacheExtension mViewCacheExtension;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="NestedScrollView"><a href="#NestedScrollView" class="headerlink" title="NestedScrollView"></a>NestedScrollView</h4></li>
+</ol>
+<h3 id="android开发模式"><a href="#android开发模式" class="headerlink" title="android开发模式"></a>android开发模式</h3><h4 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h4><h4 id="MPV"><a href="#MPV" class="headerlink" title="MPV"></a>MPV</h4><h4 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h4><h3 id="android的架构"><a href="#android的架构" class="headerlink" title="android的架构"></a>android的架构</h3><h3 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h3><h4 id="组件提高编译效率"><a href="#组件提高编译效率" class="headerlink" title="组件提高编译效率"></a>组件提高编译效率</h4><ol>
+<li>通过配置gradle将各个组件以单独的application存在</li>
+<li>通过发布成maven库，将各个组件以编译好的aar包出现</li>
+</ol>
+<h4 id="组件化路由和交互"><a href="#组件化路由和交互" class="headerlink" title="组件化路由和交互"></a>组件化路由和交互</h4><ol>
+<li>ARoute实现路由，原理是利用注解表示Activity的路由，由apt生成路由表最终还是通过startActivity(Intent)实现页面跳转。</li>
+<li>组件之间的交互，除了ARoute提供的数据传递之外还可以使用事务总站的方式，比如EventBus和RxBus。</li>
+<li>ARoute的IOC和AOP</li>
+<li>1 IOC</li>
+<li>2 AOP</li>
+</ol>
+<h3 id="插件化"><a href="#插件化" class="headerlink" title="插件化"></a>插件化</h3><h4 id="类加载（Android提供2个classLoader加载二进制文件）"><a href="#类加载（Android提供2个classLoader加载二进制文件）" class="headerlink" title="类加载（Android提供2个classLoader加载二进制文件）"></a>类加载（Android提供2个classLoader加载二进制文件）</h4><ol>
+<li><p>PathClassLoader extends BaseDexClassLoader</p>
+</li>
+<li><p>1 主要用来加载系统类和应用程序的类</p>
+</li>
+<li><p>2 Dalvik 虚拟机中不能加载未安装的dex，但在Art虚拟机中可以</p>
+</li>
+<li><p>DexClassLoader extends BaseDexClassLoader</p>
+</li>
+<li><p>1 用来加载未安装apk的dex</p>
+</li>
+</ol>
+<h4 id="资源加载"><a href="#资源加载" class="headerlink" title="资源加载"></a>资源加载</h4><ol>
+<li>android通过将资源路径放入到 AssetManager 中，再将 AssetManager 传给 Resource 对象，就可以通过 Resource 来加载资源。只不过AssetManager构造被hide，所以需要通过反射创建。</li>
+</ol>
+<h4 id="组件生命周期管理"><a href="#组件生命周期管理" class="headerlink" title="组件生命周期管理"></a>组件生命周期管理</h4><ol>
+<li>通过Hook响应的系统对象实现。</li>
+</ol>
+<h4 id="混淆后对应类的匹配"><a href="#混淆后对应类的匹配" class="headerlink" title="混淆后对应类的匹配"></a>混淆后对应类的匹配</h4><p>通过Mapping文件识别</p>
+<h3 id="第三方框架"><a href="#第三方框架" class="headerlink" title="第三方框架"></a>第三方框架</h3><h4 id="fresco"><a href="#fresco" class="headerlink" title="fresco"></a>fresco</h4><ol>
+<li>缓存策略</li>
+<li>1 Bitmap缓存</li>
+<li>2 未解码的图片存内存</li>
+<li>3 磁盘缓存</li>
+</ol>
+<h4 id="glide"><a href="#glide" class="headerlink" title="glide"></a>glide</h4><ol>
+<li>缓存策略</li>
+<li>1 内存缓存使用LruCache</li>
+<li>2 activeResource(软引用缓存)</li>
+<li>3 磁盘缓存</li>
+</ol>
+<h4 id="picasso"><a href="#picasso" class="headerlink" title="picasso"></a>picasso</h4><ol>
+<li>缓存策略</li>
+<li>1 内存缓存使用LruCache</li>
+<li>2 硬盘缓存</li>
+</ol>
+<h4 id="OkHttp"><a href="#OkHttp" class="headerlink" title="OkHttp"></a>OkHttp</h4><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d98be38a6d3f">详细介绍文章</a></p>
+<h4 id="RxJava"><a href="#RxJava" class="headerlink" title="RxJava"></a>RxJava</h4><ol>
+<li><p>原理</p>
+</li>
+<li><p>操作符</p>
+</li>
+<li><p>1 observable.just(1,2 3)// 最多9个</p>
+</li>
+<li><p>2 Observable.fromArray(arr)// 传递的参数是一个数组，解决了just操作符的个数限制的缺点</p>
+</li>
+</ol>
+<h4 id="retrofit"><a href="#retrofit" class="headerlink" title="retrofit"></a>retrofit</h4><ol>
+<li>原理</li>
+</ol>
+<h2 id="网络通信相关"><a href="#网络通信相关" class="headerlink" title="网络通信相关"></a>网络通信相关</h2><h3 id="OSI-open-system-interconnection-分层"><a href="#OSI-open-system-interconnection-分层" class="headerlink" title="OSI(open system interconnection)分层"></a>OSI(open system interconnection)分层</h3><ol>
+<li>物理层 传输比特流，媒介为网线、网卡</li>
+<li>数据链路层 传输帧数据，媒介交换机、网桥</li>
+<li>网络层 路由传输组包后的数据，媒介路由器，协议 IP</li>
+<li>传输层 传输包数据，协议TCP、UDP</li>
+<li>会话层 传输包数据，会话(session)管理，设计单工和双工通信</li>
+<li>表示层 数据经过编码或者解码</li>
+<li>应用层 ftp、http、telnet和pop3等协议传输和使用数据</li>
+</ol>
+<h3 id="TCP-transmission-control-protocol"><a href="#TCP-transmission-control-protocol" class="headerlink" title="TCP(transmission control protocol)"></a>TCP(transmission control protocol)</h3><ol>
+<li>三次握手</li>
+<li>1 client:SYN=x</li>
+<li>2 server:ACK=SYN+1;SYN=y</li>
+<li>3 client:ACK=y+1</li>
+<li>四次挥手</li>
+<li>1 client:FIN=x</li>
+<li>2 server:ACK=x+1</li>
+<li>3 server:FIN=Y</li>
+<li>4 client:ACK=Y+1 </li>
+<li>5 server close&amp;client close</li>
+</ol>
+<h3 id="UDP-user-datagram-protocol"><a href="#UDP-user-datagram-protocol" class="headerlink" title="UDP(user datagram protocol)"></a>UDP(user datagram protocol)</h3><h3 id="HTTP-HyperText-transfer-protocol"><a href="#HTTP-HyperText-transfer-protocol" class="headerlink" title="HTTP(HyperText transfer protocol)"></a>HTTP(HyperText transfer protocol)</h3><ol>
+<li>版本差异</li>
+<li>1 1.0版本<br>问题：tcp连接不能复用（一个页面由多个小图片，每个图片也要重新尽心握手连接）和排头堵塞（head of line blocking，请求是先进先出导致后续请求必须等待前面的完成才能开始）</li>
+<li>2 1.1版本<br>优点：支持持久连接（在一个tcp连接上可以发送多个http请求和响应），建立了请求头（header）来支持持久连接和创建虚拟站点（ip和端口好相同的不同站点），增加了请求方法（1.0只有三种GET,POST和HEAD）和状态代码<br>问题：请求可以不用等待上一个响应结束就发起，但是服务器返回仍然要按照请求顺序返回，以确保客户端接受数据的准确性，没有完全解决HOL问题。</li>
+<li>3 2.0版本<br>优点：分帧发送、多路复用，请求和响应不用在按照发送的顺序，大大提高了性能。采用了首部压缩。实现了服务端推送。</li>
+<li>请求和响应</li>
+<li>1 请求报文</li>
+<li>1.1 请求行【请求方法，请求URL（不包括域名），HTTP协议版本】（POST /index http/1.1）</li>
+<li>1.2 请求头【请求头部由关键字/值对组成，每行一对】（Cache-Control:no-cache）</li>
+<li>1.3 空白行【通知服务器以下不再有请求头】</li>
+<li>1.4 请求体【GET没有请求数据，POST有】</li>
+<li>2 响应报文</li>
+<li>2.1 状态行【服务器HTTP协议版本，响应状态码，状态码的文本描述】（http/1.1 200 OK）</li>
+<li>2.2 响应头</li>
+<li>2.3 空白行</li>
+<li>2.4 响应体</li>
+</ol>
+<h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><h4 id="单项认证（只有服务器有证书，一般的网络请求）"><a href="#单项认证（只有服务器有证书，一般的网络请求）" class="headerlink" title="单项认证（只有服务器有证书，一般的网络请求）"></a>单项认证（只有服务器有证书，一般的网络请求）</h4><ol>
+<li><p>请求过程</p>
+</li>
+<li><p>1 client：向服务器请求连接【服务器你好，我想建立连接】</p>
+</li>
+<li><p>2 server：服务器回应请求，并发送自己的数字证书【客户端你好，我是服务器；这是我的数字证书（数字证书包含公钥）】</p>
+</li>
+<li><p>3 client：请证明你是真的服务器【客户端用公钥生成一个字符串发给服务器】</p>
+</li>
+<li><p>4 server：服务器用私钥解密客户端的字符串了解了是要证明自己的真实身份，之后服务器回复客户端【服务器返回一个用私钥加密的字符串】</p>
+</li>
+<li><p>5 client：客户端用公钥解密服务器的字符串确认了服务器的身份，客户端发送了对称加密信息【对称加密算法和密钥】</p>
+</li>
+<li><p>6 server：服务器收到对称加密信息，之后使用对称加密通信</p>
+</li>
+<li><p>https安全问题</p>
+</li>
+<li><p>1 加密是在传输层，所以第三方拦截的是密文</p>
+</li>
+<li><p>2 在客户端和服务器接受数据其实是解密之后的明文，为了防止客服端app被劫持拦截信息（主要是发给服务器的信息），客户端可以请求获取服务的公钥加密传输数据。 </p>
+</li>
+</ol>
+<h4 id="双向认证（服务器和客户端都有证书，银联之类的网络请求）"><a href="#双向认证（服务器和客户端都有证书，银联之类的网络请求）" class="headerlink" title="双向认证（服务器和客户端都有证书，银联之类的网络请求）"></a>双向认证（服务器和客户端都有证书，银联之类的网络请求）</h4><ol>
+<li>请求过程<br>略</li>
+<li>SSL/TSL(secure socket layer / transport layer security)<br>SSL安全套接层是早起为了解决http明文传输问题而产生的，当SSL更新到3.0版本时IETF（The Internet Engineering Task Force 互联网工程任务组）将其更名为TLS。</li>
+</ol>
+<h3 id="加密技术"><a href="#加密技术" class="headerlink" title="加密技术"></a>加密技术</h3><ol>
+<li><p>对称加密<br>加密和解密数据都是用同一个密钥。常被用作信心交换。<br>常用的算法由DES(data encryption standard)、RC5和AES(Advanced Encryption Standard)</p>
+</li>
+<li><p>非对称加密<br>公钥对外公开，使用公钥加密的数据只能由私钥解密获得原文。常被用作网络握手连接。<br>常用的算法由RSA、ECC和DSA</p>
+</li>
+<li><p>hash算法<br>是一种单项的算法，对过hash算法对目标产生一个长度固定的hash值，常被用作数字签名。<br>MD5(message digest algorithm)和SHA</p>
+</li>
+</ol>
+<h2 id="数据库相关"><a href="#数据库相关" class="headerlink" title="数据库相关"></a>数据库相关</h2><h3 id="SQLite"><a href="#SQLite" class="headerlink" title="SQLite"></a>SQLite</h3><h3 id="greenDAO"><a href="#greenDAO" class="headerlink" title="greenDAO"></a>greenDAO</h3><h3 id="数据库加密"><a href="#数据库加密" class="headerlink" title="数据库加密"></a>数据库加密</h3><h4 id="对储存的数据加密"><a href="#对储存的数据加密" class="headerlink" title="对储存的数据加密"></a>对储存的数据加密</h4><ol>
+<li>使用对称加密，有加密和解密过程。</li>
+</ol>
+<h4 id="对数据库文件加密"><a href="#对数据库文件加密" class="headerlink" title="对数据库文件加密"></a>对数据库文件加密</h4><ol>
+<li>SQLCipher（一款开源的数据库加密工具）</li>
+</ol>
+<h3 id="JetPack相关"><a href="#JetPack相关" class="headerlink" title="JetPack相关"></a>JetPack相关</h3><h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a><a href="%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%95%B4%E7%90%86">设计模式</a></h3><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a><a href="java/%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a></h3><h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ol>
+<li><p>排序算法</p>
+</li>
+<li><p>其他算法</p>
+</li>
+</ol>
+<h3 id="虚拟机-1"><a href="#虚拟机-1" class="headerlink" title="虚拟机"></a>虚拟机</h3><ol>
+<li>Dalvik</li>
+<li>1 JIT方式运行，每次运行app都需要将字节码转换成机器码</li>
+<li>2 优点：安装快，安装后体积小。缺点：启动较慢、运行效率低，更耗电。</li>
+<li>Art</li>
+<li>1 AOT方式运行，在安装的时候就会吧字节码转换成机器码</li>
+<li>3 优点：app启动快，运行效率高，省电。缺点：安装慢，安装后体积相比Dalvik大。</li>
+</ol>
+</div><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/" rel="tag">android</a></li></ul></div><div class="post-nav"><a class="pre" href="/computics/%E6%8A%80%E6%9C%AF%E5%91%A8%E8%BE%B9/charles%E4%BD%BF%E7%94%A8/">charles 使用</a><a class="next" href="/computics/android/android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2/">android开发艺术探索</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://huscarter.com"/></form></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="About"><img class="nofancybox" src="/img/avatar.png"/></a><p>Here to stay.</p><a class="info-icon" href="https://twitter.com/username" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:admin@domain.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://www.github.com/huscarter" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/computics/">computics</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/computics/android/">android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/flutter/">flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/j2ee/">j2ee</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/web/">web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E6%8A%80%E6%9C%AF%E5%91%A8%E8%BE%B9/">技术周边</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/">版本控制</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80/">计算机语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/computics/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/economics/">economics</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/economics/%E5%95%86%E5%AD%A6%E9%99%A2/">商学院</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/history/">history</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/history/%E8%AE%BA%E5%8F%A4%E8%AF%B4%E4%BB%8A/">论古说今</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/%E6%97%A5%E8%AF%AD/">日语</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/%E8%8B%B1%E8%AF%AD/">英语</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/literature/">literature</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/literature/%E8%AF%97%E6%AD%8C/">诗歌</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/other/%E5%AE%B6%E8%A3%85/">家装</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/%E8%A1%8C%E5%8A%A8%E5%AD%A6%E4%B9%A0/">行动学习</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/psychology/">psychology</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/psychology/%E4%BA%BA%E6%A0%BC%E5%BF%83%E7%90%86%E5%AD%A6/">人格心理学</a></li></ul></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/flutter/" style="font-size: 15px;">flutter</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 15px;">快捷键</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/" style="font-size: 15px;">物联网</a> <a href="/tags/%E5%BB%BA%E7%AB%99/" style="font-size: 15px;">建站</a> <a href="/tags/binder/" style="font-size: 15px;">binder</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%91%A8%E8%BE%B9/" style="font-size: 15px;">技术周边</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/es/" style="font-size: 15px;">es</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/jenkins/" style="font-size: 15px;">jenkins</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/groovy/" style="font-size: 15px;">groovy</a> <a href="/tags/h5/" style="font-size: 15px;">h5</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/kotlin/" style="font-size: 15px;">kotlin</a> <a href="/tags/nexus/" style="font-size: 15px;">nexus</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/proguard/" style="font-size: 15px;">proguard</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/ssm/" style="font-size: 15px;">ssm</a> <a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/%E8%A1%8C%E5%8A%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">行动学习</a> <a href="/tags/terminal/" style="font-size: 15px;">terminal</a> <a href="/tags/threejs/" style="font-size: 15px;">threejs</a> <a href="/tags/typescript/" style="font-size: 15px;">typescript</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/weex/" style="font-size: 15px;">weex</a> <a href="/tags/%E8%B4%A2%E6%8A%A5/" style="font-size: 15px;">财报</a> <a href="/tags/%E5%88%B7%E6%9C%BA/" style="font-size: 15px;">刷机</a> <a href="/tags/%E4%BA%94%E5%88%86%E9%92%9F%E5%95%86%E5%AD%A6%E9%99%A2/" style="font-size: 15px;">五分钟商学院</a> <a href="/tags/j2ee/" style="font-size: 15px;">j2ee</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/vite/" style="font-size: 15px;">vite</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 15px;">浏览器</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/%E5%8A%A0%E5%AF%86/" style="font-size: 15px;">加密</a> <a href="/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4/" style="font-size: 15px;">那些年</a> <a href="/tags/%E8%82%A1%E7%A5%A8/" style="font-size: 15px;">股票</a> <a href="/tags/%E9%87%8F%E5%8C%96/" style="font-size: 15px;">量化</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15px;">设计模式</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15px;">微信小程序</a> <a href="/tags/%E8%AF%BB%E5%90%8E%E6%84%9F/" style="font-size: 15px;">读后感</a> <a href="/tags/%E6%94%AF%E4%BB%98%E5%AE%9D%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 15px;">支付宝小程序</a> <a href="/tags/%E6%97%A5%E8%AF%AD/" style="font-size: 15px;">日语</a> <a href="/tags/%E5%AE%B6%E8%A3%85/" style="font-size: 15px;">家装</a> <a href="/tags/IDE/" style="font-size: 15px;">IDE</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/" style="font-size: 15px;">设计规范</a> <a href="/tags/%E8%8B%B1%E8%AF%AD/" style="font-size: 15px;">英语</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 15px;">数据结构</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-react%E5%9F%BA%E7%A1%80%E7%AF%87/">前端知识整理-react基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-vite%E7%AF%87/">前端知识整理-vite篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/android/android%E5%8F%8D%E7%BC%96%E8%AF%91%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/">android反编译知识整理</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/%E7%AE%97%E6%B3%95/%E5%8A%A0%E5%AF%86%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/">加密知识梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%AF%87/">前端知识整理-浏览器篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-%E7%BD%91%E7%BB%9C%E7%AF%87/">前端知识整理-网络篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-vue%E8%BF%9B%E9%98%B6%E7%AF%87/">前端知识整理-vue进阶篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-vue%E5%9F%BA%E7%A1%80%E7%AF%87/">前端知识整理-vue基础篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86-vue%E8%AF%AD%E6%B3%95%E7%AF%87/">前端知识整理-vue语法篇</a></li><li class="post-list-item"><a class="post-list-link" href="/computics/web/es5%E5%92%8Ces6%E7%9A%84%E5%8C%BA%E5%88%AB/">es5和es6的区别</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="https://blog.konghy.cn/" title="favorites:konghy" target="_blank">favorites:konghy</a><ul></ul><a href="http://www.ruanyifeng.com/blog/" title="favorites:ruanyf" target="_blank">favorites:ruanyf</a><ul></ul><a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a><ul></ul><a href="https://www.ruanyifeng.com/" title="阮一峰" target="_blank">阮一峰</a><ul></ul><a href="http://tengj.top/" title="嘟嘟独立技术" target="_blank">嘟嘟独立技术</a><ul></ul><a href="https://hellogithub.com/" title="hellogithub" target="_blank">hellogithub</a><ul></ul><a href="https://www.cnblogs.com/xiaolincoding" title="小林博客园" target="_blank">小林博客园</a><ul></ul><a href="https://yelog.org/" title="落叶阁" target="_blank">落叶阁</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">Here to stay.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="Copy Successed!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
